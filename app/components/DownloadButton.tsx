@@ -18,7 +18,11 @@ function DownloadButton({ variant = "icon" }: DownloadButtonProps) {
     const el = document.getElementById("receipt");
     if (!el) return throwErrorDownload();
 
-    const canvas = await html2canvas(el, { scale: 2 });
+    const canvas = await html2canvas(el, {
+      scale: 2,
+      useCORS: true,
+      allowTaint: false,
+    });
     const img = canvas.toDataURL("image/png");
 
     const link = document.createElement("a");
