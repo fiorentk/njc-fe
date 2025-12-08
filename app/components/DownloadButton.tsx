@@ -5,9 +5,10 @@ const html2canvas = (await import("html2canvas")).default;
 
 interface DownloadButtonProps {
   variant?: "icon" | "full";
+  resi: string;
 }
 
-function DownloadButton({ variant = "icon" }: DownloadButtonProps) {
+function DownloadButton({ variant = "icon", resi }: DownloadButtonProps) {
   const [showErrorDownload, setShowErrorDownload] = useState(false);
   const throwErrorDownload = () => {
     setShowErrorDownload(true);
@@ -26,7 +27,7 @@ function DownloadButton({ variant = "icon" }: DownloadButtonProps) {
     const img = canvas.toDataURL("image/png");
 
     const link = document.createElement("a");
-    link.download = "receipt.png";
+    link.download = `receipt_${resi}.png`;
     link.href = img;
     link.click();
   };
@@ -39,7 +40,7 @@ function DownloadButton({ variant = "icon" }: DownloadButtonProps) {
                border border-white px-3 py-1 rounded 
                shadow-lg"
         >
-          Error downloading receipt.
+          Error saat mengunduh resi.
         </div>
       )}
       <button

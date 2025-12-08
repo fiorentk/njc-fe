@@ -5,14 +5,16 @@ const html2canvas = (await import("html2canvas")).default;
 
 interface ShareButtonProps {
   variant?: "icon" | "full";
+  resi: string;
 }
 
-function ShareButton({ variant = "icon" }: ShareButtonProps) {
+function ShareButton({ variant = "icon", resi }: ShareButtonProps) {
   const [showErrorShare, setShowErrorShare] = useState(false);
   const throwErrorShare = () => {
     setShowErrorShare(true);
     setTimeout(() => setShowErrorShare(false), 1200);
   };
+
   const shareReceipt = async () => {
     const el = document.getElementById("receipt");
     if (!el) return throwErrorShare();
@@ -22,41 +24,56 @@ function ShareButton({ variant = "icon" }: ShareButtonProps) {
       useCORS: true,
       allowTaint: false,
     });
+
     const img = canvas.toDataURL("image/png");
 
-    const link = document.createElement("a");
-    link.download = "receipt.png";
-    link.href = img;
-    link.click();
-
+    // bikin file
     const blob = await (await fetch(img)).blob();
     const file = new File([blob], "receipt.png", { type: "image/png" });
 
+    // fungsi download
+    const forceDownload = () => {
+      const link = document.createElement("a");
+      link.download = `receipt_${resi}.png`;
+      link.href = img;
+      link.click();
+    };
+
+    // kalau bisa share → share
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      await navigator.share({
-        title: "My Nusantara Receipt",
-        text: "Here’s my digital receipt from Nusantara Journey Card 🌏",
-        files: [file],
-      });
+      try {
+        await navigator.share({
+          title: "My Nusantara Receipt",
+          text: "Here’s my digital receipt from Nusantara Journey Card 🌏",
+          files: [file],
+        });
+      } catch (err) {
+        throwErrorShare();
+        forceDownload();
+      }
     } else {
       throwErrorShare();
+      forceDownload();
     }
   };
+
   return (
     <div>
       {showErrorShare && (
         <div
           className="fixed top-4 left-1/2 -translate-x-1/2 
-               bg-red-600 text-white font-semibold 
-               border border-white px-3 py-1 rounded 
-               shadow-lg"
+          bg-red-600 text-white font-semibold 
+          border border-white px-3 py-1 rounded 
+          shadow-lg"
         >
-          Sharing not supported on this device/browser.
+          Perangkat ini tidak mendukung fitur berbagi; resi akan diunduh sebagai
+          alternatif.
         </div>
       )}
+
       {variant === "icon" ? (
-        <button>
-          <Share2 size={16} onClick={shareReceipt} />
+        <button onClick={shareReceipt}>
+          <Share2 size={16} />
         </button>
       ) : (
         <button

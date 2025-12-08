@@ -1,16 +1,27 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Copy } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 interface CopyButtonProps {
-  link: string;
   variant?: "icon" | "full";
 }
 
-function CopyButton({ link, variant = "icon" }: CopyButtonProps) {
+function CopyButton({ variant = "icon" }: CopyButtonProps) {
+  const pathname = usePathname();
+  const [link, setLink] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setLink(`${window.location.origin}${pathname}`);
+    }
+  }, [pathname]);
+
   const [showCopied, setShowCopied] = useState(false);
+
   const copyReceipt = async () => {
-    navigator.clipboard.writeText(link);
+    if (!link) return;
+    await navigator.clipboard.writeText(link);
     setShowCopied(true);
     setTimeout(() => setShowCopied(false), 1200);
   };
@@ -18,13 +29,8 @@ function CopyButton({ link, variant = "icon" }: CopyButtonProps) {
   return (
     <div>
       {showCopied && (
-        <div
-          className="fixed top-4 left-1/2 -translate-x-1/2 
-               bg-white text-posBlue font-semibold 
-               border border-posBlue px-3 py-1 rounded 
-               shadow-lg"
-        >
-          Link Successfully Copied!
+        <div className="fixed top-4 left-1/2 -translate-x-1/2 bg-white text-posBlue font-semibold border border-posBlue px-3 py-1 rounded shadow-lg">
+          Link berhasil disalin!
         </div>
       )}
 

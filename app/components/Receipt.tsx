@@ -1,6 +1,6 @@
-import CopyButton from "../components/CopyButton";
-import ShareButton from "../components/ShareButton";
-import DownloadButton from "../components/DownloadButton";
+import CopyButton from "./CopyButton";
+import ShareButton from "./ShareButton";
+import DownloadButton from "./DownloadButton";
 
 interface ReceiptProps {
   data: {
@@ -60,7 +60,6 @@ function Receipt({ data }: ReceiptProps) {
   const is_umkm = data.data.is_umkm;
   const umkm_name = data.data.umkm_name;
   const umkm_logo = data.data.umkm_logo;
-  const link = "http://localhost:5173/";
 
   let state;
 
@@ -108,8 +107,8 @@ function Receipt({ data }: ReceiptProps) {
             <div className="text-posOrange font-semibold flex m-2 justify-between">
               <span>State Kiriman</span>
               <div className="flex items-center gap-2">
-                <CopyButton link={link} variant="icon" />
-                <ShareButton variant="icon" />
+                <CopyButton variant="icon" />
+                <ShareButton variant="icon" resi={data.data.connote} />
               </div>
             </div>
             <div className="bg-posBlue rounded-md m-2 mt-0 relative overflow-hidden flex flex-1">
@@ -201,13 +200,15 @@ function Receipt({ data }: ReceiptProps) {
         </div>
       </div>
       {/* PROGRESS & QR */}
-      <div className="m-4 flex flex-col md:flex-row gap-4 items-center">
+      <div className="m-4 flex flex-col md:flex-row gap-4 items-stretch">
         {/* PROGRESS */}
-        <div className="w-[450px] h-80 shrink-0 flex flex-col shadow-lg bg-gray-100 rounded-md text-posBlue">
+        <div className="w-[450px] shrink-0 flex flex-col shadow-lg bg-gray-100 rounded-md text-posBlue">
           <div className="m-2 flex items-baseline">
             <span className="text-base font-bold">Progress Kiriman</span>
             <span className="text-lg font-bold ml-2">{data.data.connote}</span>
-            <span className="text-sm ml-auto text-right">ETA: {eta_str}</span>
+            <span className="text-sm ml-auto text-right">
+              Estimasi Tiba: {eta_str}
+            </span>
           </div>
           {/* DETAIL*/}
           <div className="m-2 overflow-y-auto flex-1">
@@ -229,14 +230,14 @@ function Receipt({ data }: ReceiptProps) {
         </div>
 
         {/* BUTTONS AND DOWNLOAD */}
-        <div className="w-[450px] h-80 shrink-0 flex flex-col gap-4 md:gap-2">
+        <div className="w-[450px] shrink-0 flex flex-col gap-4 md:gap-2">
           {/* BUTTONS AND NOTE*/}
           <div className="w-full shadow-lg bg-gray-100 rounded-md">
             {/* BUTTONS */}
             <div className="m-2 flex justify-between">
-              <CopyButton link={link} variant="full" />
-              <DownloadButton />
-              <ShareButton variant="full" />
+              <CopyButton variant="full" />
+              <DownloadButton resi={data.data.connote} />
+              <ShareButton variant="full" resi={data.data.connote} />
             </div>
             {/* NOTE */}
             <div className="text-xs text-gray-600 m-2 p-2 bg-gray-300 rounded-md">
@@ -251,21 +252,26 @@ function Receipt({ data }: ReceiptProps) {
             <span className="text-posBlue font-bold">
               Download Aplikasi Pospay & Pos Aja!
             </span>
-            <div className="flex gap-4 justify-center">
-              <img
-                className="w-[140] object-contain pl-1 rounded-xl"
-                src="QR-POS.png"
-                alt="QR-POS"
-              />
+            <div className="flex gap-4 justify-center mt-2">
+              <a
+                className="w-[130px] object-contain text-posBlue font-bold"
+                href="https://linktr.ee/lasingan"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img className="" src="/QR-POS.png" alt="QR-POS" />
+                Click or Scan
+              </a>
+
               <div className="flex flex-col items-center justify-center">
                 <img
-                  className="w-[100px] object-contain pl-1"
-                  src="posaja-logo.png"
+                  className="w-[100px] object-contain"
+                  src="/posaja-logo.png"
                   alt="posaja-logo"
                 />
                 <img
-                  className="h-10 object-contain pl-1"
-                  src="pospay-logo.png"
+                  className="h-10 object-contain"
+                  src="/pospay-logo.png"
                   alt="pospay-logo"
                 />
               </div>
@@ -284,7 +290,7 @@ function Receipt({ data }: ReceiptProps) {
         {/* Ads 1 */}
         <div className="flex w-[450px] h-28 p-2 shrink-0 bg-gray-100 rounded-md text-posBlue shadow-lg">
           <img
-            src="ads-1.png"
+            src="/ads-1.png"
             alt="ads-1"
             className="h-20 object-contain mr-3 self-center rounded"
           />
@@ -305,7 +311,7 @@ function Receipt({ data }: ReceiptProps) {
         {/* Ads 2 */}
         <div className="flex w-[450px] h-28 p-2 shrink-0 bg-gray-100 rounded-md text-posBlue shadow-lg">
           <img
-            src="ads-2.png"
+            src="/ads-2.png"
             alt="ads-2"
             className="h-20 object-contain mr-3 self-center rounded"
           />

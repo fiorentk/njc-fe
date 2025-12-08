@@ -1,4 +1,4 @@
-import Receipt from "./Receipt";
+import Receipt from "@/app/components/Receipt";
 
 interface Props {
   params: {
@@ -28,7 +28,7 @@ export default async function Page({ params }: Props) {
       <nav className="flex h-16 items-center">
         <img
           className="h-16 object-contain p-1"
-          src="posind-logo.png"
+          src="/posind-logo.png"
           alt="posind-logo"
         />
       </nav>
