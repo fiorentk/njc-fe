@@ -17,8 +17,18 @@ function ShareButton({ variant = "icon" }: ShareButtonProps) {
     const el = document.getElementById("receipt");
     if (!el) return throwErrorShare();
 
-    const canvas = await html2canvas(el, { scale: 2 });
+    const canvas = await html2canvas(el, {
+      scale: 2,
+      useCORS: true,
+      allowTaint: false,
+    });
     const img = canvas.toDataURL("image/png");
+
+    const link = document.createElement("a");
+    link.download = "receipt.png";
+    link.href = img;
+    link.click();
+
     const blob = await (await fetch(img)).blob();
     const file = new File([blob], "receipt.png", { type: "image/png" });
 
