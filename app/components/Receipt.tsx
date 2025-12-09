@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import CopyButton from "./CopyButton";
 import ShareButton from "./ShareButton";
 import DownloadButton from "./DownloadButton";
@@ -200,7 +202,7 @@ function Receipt({ data }: ReceiptProps) {
         </div>
       </div>
       {/* PROGRESS & BUTTONS */}
-      <div className="m-4 flex flex-col md:flex-row gap-4 items-center">
+      <div className="m-4 flex flex-col md:flex-row gap-4 items-center justify-center">
         {/* PROGRESS */}
         <div className="w-[450px] self-stretch shrink-0 flex flex-col shadow-lg bg-gray-100 rounded-md text-posBlue">
           <div className="m-2 flex items-baseline">
@@ -293,7 +295,10 @@ function Receipt({ data }: ReceiptProps) {
       {/* Ads Content */}
       <div className="m-4 flex flex-col md:flex-row gap-4 items-center">
         {/* Ads 1 */}
-        <div className="flex w-[450px] h-28 p-2 shrink-0 bg-gray-100 rounded-md text-posBlue shadow-lg">
+        <Link
+          href="/article"
+          className="flex w-[450px] h-28 p-2 shrink-0 bg-gray-100 rounded-md text-posBlue shadow-lg"
+        >
           <img
             src="/ads-1.png"
             alt="ads-1"
@@ -311,10 +316,13 @@ function Receipt({ data }: ReceiptProps) {
               lebih efisien... Baca Lebih Lanjut
             </span>
           </div>
-        </div>
+        </Link>
 
         {/* Ads 2 */}
-        <div className="flex w-[450px] h-28 p-2 shrink-0 bg-gray-100 rounded-md text-posBlue shadow-lg">
+        <Link
+          href="/article"
+          className="flex w-[450px] h-28 p-2 shrink-0 bg-gray-100 rounded-md text-posBlue shadow-lg"
+        >
           <img
             src="/ads-2.png"
             alt="ads-2"
@@ -332,7 +340,7 @@ function Receipt({ data }: ReceiptProps) {
               lebih efisien... Baca Lebih Lanjut
             </span>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );

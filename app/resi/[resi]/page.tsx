@@ -46,7 +46,7 @@ export default async function Page({ params }: Props) {
         )}
       </main>
       {/* FOOTER */}
-      <footer className="h-20"></footer>
+      <footer className="h-8"></footer>
     </div>
   );
 }
