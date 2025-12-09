@@ -78,7 +78,7 @@ function ShareButton({ variant = "icon", resi }: ShareButtonProps) {
       ) : (
         <button
           onClick={shareReceipt}
-          className="px-4 py-2 bg-white text-posOrange font-semibold border border-posOrange rounded-lg flex items-center gap-2"
+          className="px-2 py-2 bg-white text-posOrange font-semibold border border-posOrange rounded-lg flex items-center gap-2 text-sm"
         >
           <Share2 size={18} />
           Bagikan Resi

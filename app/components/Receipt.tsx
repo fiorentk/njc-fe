@@ -199,16 +199,21 @@ function Receipt({ data }: ReceiptProps) {
           </div>
         </div>
       </div>
-      {/* PROGRESS & QR */}
-      <div className="m-4 flex flex-col md:flex-row gap-4 items-stretch">
+      {/* PROGRESS & BUTTONS */}
+      <div className="m-4 flex flex-col md:flex-row gap-4 items-center">
         {/* PROGRESS */}
-        <div className="w-[450px] shrink-0 flex flex-col shadow-lg bg-gray-100 rounded-md text-posBlue">
+        <div className="w-[450px] self-stretch shrink-0 flex flex-col shadow-lg bg-gray-100 rounded-md text-posBlue">
           <div className="m-2 flex items-baseline">
-            <span className="text-base font-bold">Progress Kiriman</span>
-            <span className="text-lg font-bold ml-2">{data.data.connote}</span>
-            <span className="text-sm ml-auto text-right">
-              Estimasi Tiba: {eta_str}
-            </span>
+            <div className="flex flex-col">
+              <span className="text-base font-bold">Progress Kiriman</span>
+              <span className="text-base font-bold">
+                Resi: {data.data.connote}
+              </span>
+            </div>
+            <div className="text-sm ml-auto text-right flex flex-col">
+              <span>Estimasi Tiba:</span>
+              <span>{eta_str}</span>
+            </div>
           </div>
           {/* DETAIL*/}
           <div className="m-2 overflow-y-auto flex-1">
@@ -230,7 +235,7 @@ function Receipt({ data }: ReceiptProps) {
         </div>
 
         {/* BUTTONS AND DOWNLOAD */}
-        <div className="w-[450px] shrink-0 flex flex-col gap-4 md:gap-2">
+        <div className="w-[450px] self-stretch shrink-0 flex flex-col gap-4 md:gap-2">
           {/* BUTTONS AND NOTE*/}
           <div className="w-full shadow-lg bg-gray-100 rounded-md">
             {/* BUTTONS */}
