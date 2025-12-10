@@ -198,12 +198,12 @@ function Receipt({ data }: ReceiptProps) {
             </div>
 
             {/* DETAIL */}
-            <div className="p-2 overflow-y-auto flex-1 text-posBlue">
+            <div className="p-2 overflow-y-auto flex-1 ">
               <div>
                 {dataKiriman.map((item, i) => (
                   <ul
                     key={i}
-                    className="flex justify-between w-full py-1 font-semibold"
+                    className="flex justify-between w-full py-1 text-posBlue font-bold"
                   >
                     <span className="w-1/2 whitespace-nowrap text-left">
                       {item.name}
