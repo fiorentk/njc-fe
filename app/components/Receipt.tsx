@@ -331,7 +331,7 @@ function Receipt({ data }: ReceiptProps) {
         {/* Ads 1 */}
         <Link
           href="/article"
-          className="flex w-[450px] h-28 p-2 shrink-0 bg-gray-100 rounded-md text-posBlue shadow-lg"
+          className="flex w-[450px] h-28 p-2 shrink-0 bg-gray-100 rounded-md text-posBlue shadow-lg hover:bg-gray-300"
         >
           <img
             src="/ads-1.png"
@@ -355,7 +355,7 @@ function Receipt({ data }: ReceiptProps) {
         {/* Ads 2 */}
         <Link
           href="/article"
-          className="flex w-[450px] h-28 p-2 shrink-0 bg-gray-100 rounded-md text-posBlue shadow-lg"
+          className="flex w-[450px] h-28 p-2 shrink-0 bg-gray-100 rounded-md text-posBlue shadow-lg hover:bg-gray-300"
         >
           <img
             src="/ads-2.png"

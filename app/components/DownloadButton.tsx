@@ -45,7 +45,8 @@ function DownloadButton({ variant = "icon", resi }: DownloadButtonProps) {
       )}
       <button
         onClick={downloadReceipt}
-        className="px-2 py-2 bg-white text-posOrange font-semibold border border-posOrange rounded-lg flex items-center gap-2 text-sm"
+        className="px-2 py-2 bg-white text-posOrange font-semibold border border-posOrange rounded-lg flex items-center gap-2 text-sm
+             transition duration-200 hover:bg-posOrange hover:text-white hover:border-posOrange hover:shadow-md "
       >
         <Download size={16} />
         Unduh Resi

@@ -35,13 +35,17 @@ function CopyButton({ variant = "icon" }: CopyButtonProps) {
       )}
 
       {variant === "icon" ? (
-        <button onClick={copyReceipt}>
+        <button
+          onClick={copyReceipt}
+          className="transition duration-200 hover:scale-110 hover:text-posOrange"
+        >
           <Copy size={16} />
         </button>
       ) : (
         <button
           onClick={copyReceipt}
-          className="px-2 py-2 bg-white text-posOrange font-semibold border border-posOrange rounded-lg flex items-center gap-2 text-sm"
+          className="px-2 py-2 bg-white text-posOrange font-semibold border border-posOrange rounded-lg flex items-center gap-2 text-sm
+               transition duration-200 hover:bg-posOrange hover:text-white hover:border-posOrange hover:shadow-md"
         >
           <Copy size={18} />
           Salin Resi
