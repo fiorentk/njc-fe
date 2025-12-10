@@ -46,6 +46,21 @@ function Receipt({ data }: ReceiptProps) {
 
   const progressKiriman = data.data.connote_progress;
 
+  const formatDate = (iso: string) => {
+    const d = new Date(iso);
+    const tanggal = d.toLocaleDateString("id-ID", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+    const jam = d.toLocaleTimeString("id-ID", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    return `${tanggal} ${jam}`;
+  };
+
   const created = new Date(data.data.connote_created_date);
   const eta = new Date(created);
   eta.setDate(created.getDate() + data.data.sla);
@@ -183,7 +198,7 @@ function Receipt({ data }: ReceiptProps) {
             </div>
 
             {/* DETAIL */}
-            <div className="p-2 overflow-y-auto flex-1">
+            <div className="p-2 overflow-y-auto flex-1 text-posBlue">
               <div>
                 {dataKiriman.map((item, i) => (
                   <ul
@@ -219,20 +234,39 @@ function Receipt({ data }: ReceiptProps) {
           </div>
           {/* DETAIL*/}
           <div className="m-2 overflow-y-auto flex-1">
-            {progressKiriman.map((item, i) => (
-              <li key={i} className="flex items-start gap-2">
-                {/* DOT */}
-                <div className="w-3 h-3 rounded-full bg-posOrange mt-2" />
+            {progressKiriman.map((item, i) => {
+              const isCurrent = i === 0;
 
-                {/* TEXT */}
-                <div className="flex flex-col flex-1">
-                  <span className="text-left font-semibold break-all">
-                    {item.progress_state}
-                  </span>
-                  <span className="text-left text-sm">{item.timestamp}</span>
-                </div>
-              </li>
-            ))}
+              return (
+                <li key={i} className="flex items-start gap-2">
+                  <div
+                    className={`w-3 h-3 rounded-full mt-2 ${
+                      isCurrent ? "bg-posOrange" : "bg-posOrange/60"
+                    }`}
+                  />
+
+                  <div className="flex flex-col flex-1">
+                    <span
+                      className={`break-all ${
+                        isCurrent
+                          ? "text-base font-bold"
+                          : "text-sm font-semibold"
+                      }`}
+                    >
+                      {item.progress_state}
+                    </span>
+
+                    <span
+                      className={`${
+                        isCurrent ? "text-base font-semibold mb-2" : "text-sm"
+                      }`}
+                    >
+                      {formatDate(item.timestamp)}
+                    </span>
+                  </div>
+                </li>
+              );
+            })}
           </div>
         </div>
 
