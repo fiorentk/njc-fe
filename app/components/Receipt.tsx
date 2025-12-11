@@ -128,7 +128,7 @@ function Receipt({ data }: ReceiptProps) {
                 <ShareButton variant="icon" resi={data.data.connote} />
               </div>
             </div>
-            <div className="bg-posBlue rounded-md m-2 mt-0 relative overflow-hidden flex flex-1">
+            <div className="bg-posBlue rounded-md mx-2 relative overflow-hidden flex flex-1">
               {/* BACKGROUND CITY */}
               <img
                 src="/city.png"
@@ -143,15 +143,15 @@ function Receipt({ data }: ReceiptProps) {
 
               {/* LOCATION BUBBLE */}
               {/* CURRENT */}
-              <div className="absolute bottom-40 left-1/2 -translate-x-1/2 bg-white text-posBlue px-4 py-2 rounded-full flex flex-col text-center">
-                <span className="text-xs">Lokasi saat ini</span>
-                <span className="text-sm font-bold">
+              <div className="absolute bottom-36 left-1/2 -translate-x-1/2 bg-white text-posBlue px-4 py-2 rounded-full flex flex-col text-center">
+                <span className="text-sm">Lokasi saat ini</span>
+                <span className="text-base font-bold">
                   {data.data.current_office}
                 </span>
               </div>
               {/* ORIGIN */}
-              <div className="absolute bottom-14 left-4 flex flex-col items-center">
-                <div className="max-w-28 bg-white text-posBlue px-2 py-1 rounded-3xl text-center mb-1 text-xs font-bold">
+              <div className="absolute bottom-10 left-2 flex flex-col items-center">
+                <div className="max-w-30 bg-white text-posBlue px-2 py-1 rounded-3xl text-center mb-1 text-sm font-bold">
                   {data.data.origin_office}
                 </div>
                 <div className="relative w-4 h-4">
@@ -161,8 +161,8 @@ function Receipt({ data }: ReceiptProps) {
               </div>
 
               {/* DESTINATION */}
-              <div className="absolute bottom-14 right-4 flex flex-col items-center">
-                <div className=" max-w-28 bg-white text-posBlue px-2 py-1 rounded-3xl text-center mb-1 text-xs font-bold">
+              <div className="absolute bottom-10 right-2 flex flex-col items-center">
+                <div className=" max-w-30 bg-white text-posBlue px-2 py-1 rounded-3xl text-center mb-1 text-sm font-bold">
                   {data.data.destination_office}
                 </div>
                 <div className="relative w-4 h-4">
@@ -179,9 +179,20 @@ function Receipt({ data }: ReceiptProps) {
               <div>
                 <img
                   src={state}
-                  className="absolute left-[29%] bottom-16 -translate-x-1/2 w-40 animate-slideFadeLoop"
+                  className="absolute left-[29%] bottom-12 -translate-x-1/2 w-40 animate-slideFadeLoop"
                 />
               </div>
+            </div>
+            <div className="text-right">
+              <span className="text-gray-400 text-[11px] mx-2 font-light">
+                Untuk detail bisa dilihat di aplikasi
+                <a
+                  className="ml-1 underline hover:font-normal"
+                  href="https://linktr.ee/lasingan"
+                >
+                  PosAja!
+                </a>
+              </span>
             </div>
           </div>
 
