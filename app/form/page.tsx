@@ -78,6 +78,7 @@ export default function App() {
         return;
       }
 
+      setIsLoading(false);
       window.location.href = "/result";
     } catch (err) {
       console.error("Network error:", err);
