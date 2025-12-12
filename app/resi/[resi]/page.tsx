@@ -21,7 +21,7 @@ export default async function Page({ params }: Props) {
   );
 
   const data = await res.json();
-
+  console.log(data);
   return (
     <div className="min-h-screen flex flex-col scroll-auto">
       {/* NAV */}
