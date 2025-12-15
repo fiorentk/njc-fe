@@ -80,61 +80,57 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
     }
   };
 
-  // Delete stamp
+  // Delete stamp - explicitly typed parameter
   const handleDeleteStamp = (id: number) => {
     setStamps(stamps.filter((stamp) => stamp.id !== id));
   };
 
   // Update article 1
-  const handleUpdateArticle1 = (
-    field: keyof typeof article1,
-    value: string
-  ) => {
+  const handleUpdateArticle1 = (field: string, value: string) => {
     setArticle1((prev) => ({ ...prev, [field]: value }));
   };
 
   // Update article 2
-  const handleUpdateArticle2 = (
-    field: keyof typeof article2,
-    value: string
-  ) => {
+  const handleUpdateArticle2 = (field: string, value: string) => {
     setArticle2((prev) => ({ ...prev, [field]: value }));
   };
 
   return (
-    <div className="min-h-screen flex flex-col scroll-auto">
+    <div className="min-h-screen flex flex-col">
       {/* NAV */}
-      <nav className="flex h-16 items-center bg-white border-b border-gray-200">
+      <nav className="flex h-16 items-center bg-white border-b border-gray-200 px-4">
         <img
-          className="h-16 object-contain p-1"
+          className="h-12 object-contain"
           src="/posind-logo.png"
           alt="posind-logo"
         />
       </nav>
 
       {/* BODY */}
-      <main className="flex flex-1 bg-gradient-to-b min-w-max from-posBlue from-50% to-gradientCus justify-center p-4 md:p-8">
+      <main className="flex flex-1 bg-gradient-to-b from-posBlue from-50% to-gradientCus justify-center p-2 sm:p-4">
         <div className="w-full max-w-6xl">
           {/* Page Header */}
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-white mb-2">Panel Admin</h1>
-            <p className="text-blue-100">
+          <div className="text-center mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+              Panel Admin
+            </h1>
+            <p className="text-blue-100 text-sm sm:text-base px-2">
               Kelola data prangko dan artikel konten sesuai format halaman
               artikel
             </p>
           </div>
 
           {/* Stamp Management Section */}
-          <div className="bg-white rounded-lg shadow-lg mb-8 overflow-hidden">
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+          <div className="bg-white rounded-lg shadow-lg mb-6 sm:mb-8 overflow-hidden">
+            <div className="p-4 sm:p-6 border-b border-gray-200">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
                 Manajemen Data Prangko
               </h2>
 
               {/* Add New Stamp Form */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 p-4 bg-gray-50 rounded-lg">
+              <div className="grid grid-cols-1 gap-3 sm:gap-4 mb-4 sm:mb-6 p-3 sm:p-4 bg-gray-50 rounded-lg">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                     Nama Kota
                   </label>
                   <input
@@ -142,11 +138,11 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
                     value={newCity}
                     onChange={(e) => setNewCity(e.target.value)}
                     placeholder="Masukkan nama kota"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-posBlue focus:border-posBlue"
+                    className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:ring-2 focus:ring-posBlue focus:border-posring-posBlue"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                     Link Gambar
                   </label>
                   <input
@@ -154,37 +150,37 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
                     value={newImageUrl}
                     onChange={(e) => setNewImageUrl(e.target.value)}
                     placeholder="https://example.com/image.jpg"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-posBlue focus:border-posBlue"
+                    className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:ring-2 focus:ring-posBlue focus:border-posring-posBlue"
                   />
                 </div>
-                <div className="flex items-end">
+                <div>
                   <button
                     onClick={handleAddStamp}
-                    className="w-full px-4 py-2 bg-posBlue text-white font-medium rounded-md hover:bg-posDarkBlue transition-colors duration-200"
+                    className="w-full px-3 sm:px-4 py-2 bg-white text-posOrange border border-posOrange font-medium rounded-md text-sm sm:text-base hover:bg-posOrange hover:text-white transition-colors duration-200"
                   >
                     Tambah Prangko
                   </button>
                 </div>
               </div>
 
-              {/* Stamps Table */}
+              {/* Stamps Table - Responsive */}
               <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
+                <table className="min-w-full divide-y divide-gray-200 text-xs sm:text-sm">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-2 sm:px-6 py-2 sm:py-3 text-left font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
                         ID
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-2 sm:px-6 py-2 sm:py-3 text-left font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
                         Nama Kota
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Pratinjau Gambar
+                      <th className="px-2 sm:px-6 py-2 sm:py-3 text-left font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
+                        Pratinjau
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-2 sm:px-6 py-2 sm:py-3 text-left font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
                         Link Gambar
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-2 sm:px-6 py-2 sm:py-3 text-left font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
                         Aksi
                       </th>
                     </tr>
@@ -192,26 +188,26 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
                   <tbody className="bg-white divide-y divide-gray-200">
                     {stamps.map((stamp) => (
                       <tr key={stamp.id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap font-medium text-gray-900">
                           {stamp.id}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-gray-900">
                           {stamp.city}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap">
                           <img
                             src={stamp.imageUrl}
                             alt={stamp.city}
-                            className="w-16 h-12 object-contain border border-gray-200 rounded"
+                            className="w-12 sm:w-16 h-9 sm:h-12 object-contain border border-gray-200 rounded"
                           />
                         </td>
-                        <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
+                        <td className="px-2 sm:px-6 py-2 sm:py-4 text-gray-500 max-w-[100px] sm:max-w-xs truncate">
                           {stamp.imageUrl}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm">
+                        <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap">
                           <button
                             onClick={() => handleDeleteStamp(stamp.id)}
-                            className="text-red-600 hover:text-red-900 font-medium"
+                            className="text-red-600 hover:text-red-900 font-medium text-xs sm:text-sm"
                           >
                             Hapus
                           </button>
@@ -221,7 +217,7 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
                   </tbody>
                 </table>
                 {stamps.length === 0 && (
-                  <div className="text-center py-8 text-gray-500">
+                  <div className="text-center py-6 text-gray-500 text-sm">
                     Belum ada data prangko
                   </div>
                 )}
@@ -230,17 +226,17 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
           </div>
 
           {/* Edit Article Section - Matching the exact article page structure */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {/* Article 1 */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="p-6">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">
+              <div className="p-4 sm:p-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">
                   Edit Artikel 1
                 </h2>
 
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                       Judul Artikel
                     </label>
                     <input
@@ -249,13 +245,13 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
                       onChange={(e) =>
                         handleUpdateArticle1("title", e.target.value)
                       }
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-posOrange focus:border-posOrange"
+                      className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                       placeholder="Masukkan judul artikel"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                       URL Gambar
                     </label>
                     <input
@@ -265,12 +261,12 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
                         handleUpdateArticle1("image", e.target.value)
                       }
                       placeholder="ads-1-full.png atau URL gambar"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-posOrange focus:border-posOrange"
+                      className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                       Konten Artikel
                     </label>
                     <textarea
@@ -279,19 +275,19 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
                         handleUpdateArticle1("content", e.target.value)
                       }
                       placeholder="Masukkan konten artikel lengkap..."
-                      className="w-full h-64 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-posOrange focus:border-posOrange resize-none"
+                      className="w-full h-40 sm:h-64 p-2 sm:p-4 border border-gray-300 rounded-lg text-xs sm:text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500 resize-none"
                     />
                   </div>
 
                   {/* Article Preview - Exact match to the article page structure */}
-                  <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                  <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-gray-50 rounded-lg">
+                    <h3 className="text-sm sm:text-lg font-semibold text-gray-800 mb-2 sm:mb-3">
                       Pratinjau Halaman Artikel:
                     </h3>
-                    <div className="bg-gray-50 rounded-xl shadow-lg overflow-hidden max-w-3xl mx-auto">
+                    <div className="bg-gray-50 rounded-lg sm:rounded-xl shadow-lg overflow-hidden max-w-3xl mx-auto">
                       {/* TITLE */}
-                      <div className="bg-posOrange px-4 py-3">
-                        <h1 className="text-white text-center font-black break-words text-lg md:text-xl leading-snug">
+                      <div className="bg-orange-500 px-3 sm:px-4 py-2 sm:py-3">
+                        <h1 className="text-white text-center font-black break-words text-sm sm:text-lg md:text-xl leading-snug">
                           {article1.title}
                         </h1>
                       </div>
@@ -301,17 +297,19 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
                         <img
                           src={article1.image}
                           alt="Pratinjau artikel"
-                          className="w-full h-48 md:h-64 object-cover"
+                          className="w-full h-32 sm:h-48 md:h-64 object-cover"
                           style={{ objectPosition: "50% 20%" }}
                         />
                       </div>
 
                       {/* TEXT */}
-                      <div className="text-gray-800 break-words space-y-3 px-4 py-4 text-sm md:text-base leading-relaxed">
+                      <div className="text-gray-800 break-words space-y-2 sm:space-y-3 px-3 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm md:text-base leading-relaxed">
                         {article1.content
                           .split("\n\n")
                           .map((paragraph, index) => (
-                            <p key={index}>{paragraph}</p>
+                            <p key={index} className="whitespace-pre-line">
+                              {paragraph}
+                            </p>
                           ))}
                       </div>
                     </div>
@@ -322,14 +320,14 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
 
             {/* Article 2 */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="p-6">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">
+              <div className="p-4 sm:p-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">
                   Edit Artikel 2
                 </h2>
 
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                       Judul Artikel
                     </label>
                     <input
@@ -338,13 +336,13 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
                       onChange={(e) =>
                         handleUpdateArticle2("title", e.target.value)
                       }
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-posOrange focus:border-posOrange"
+                      className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                       placeholder="Masukkan judul artikel"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                       URL Gambar
                     </label>
                     <input
@@ -354,12 +352,12 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
                         handleUpdateArticle2("image", e.target.value)
                       }
                       placeholder="ads-2-full.png atau URL gambar"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-posOrange focus:border-posOrange"
+                      className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                       Konten Artikel
                     </label>
                     <textarea
@@ -368,19 +366,19 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
                         handleUpdateArticle2("content", e.target.value)
                       }
                       placeholder="Masukkan konten artikel lengkap..."
-                      className="w-full h-64 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-posOrange focus:border-posOrange resize-none"
+                      className="w-full h-40 sm:h-64 p-2 sm:p-4 border border-gray-300 rounded-lg text-xs sm:text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500 resize-none"
                     />
                   </div>
 
                   {/* Article Preview - Exact match to the article page structure */}
-                  <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                  <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-gray-50 rounded-lg">
+                    <h3 className="text-sm sm:text-lg font-semibold text-gray-800 mb-2 sm:mb-3">
                       Pratinjau Halaman Artikel:
                     </h3>
-                    <div className="bg-gray-50 rounded-xl shadow-lg overflow-hidden max-w-3xl mx-auto">
+                    <div className="bg-gray-50 rounded-lg sm:rounded-xl shadow-lg overflow-hidden max-w-3xl mx-auto">
                       {/* TITLE */}
-                      <div className="bg-posOrange px-4 py-3">
-                        <h1 className="text-white text-center font-black break-words text-lg md:text-xl leading-snug">
+                      <div className="bg-orange-500 px-3 sm:px-4 py-2 sm:py-3">
+                        <h1 className="text-white text-center font-black break-words text-sm sm:text-lg md:text-xl leading-snug">
                           {article2.title}
                         </h1>
                       </div>
@@ -390,17 +388,19 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
                         <img
                           src={article2.image}
                           alt="Pratinjau artikel"
-                          className="w-full h-48 md:h-64 object-cover"
+                          className="w-full h-32 sm:h-48 md:h-64 object-cover"
                           style={{ objectPosition: "50% 20%" }}
                         />
                       </div>
 
                       {/* TEXT */}
-                      <div className="text-gray-800 break-words space-y-3 px-4 py-4 text-sm md:text-base leading-relaxed">
+                      <div className="text-gray-800 break-words space-y-2 sm:space-y-3 px-3 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm md:text-base leading-relaxed">
                         {article2.content
                           .split("\n\n")
                           .map((paragraph, index) => (
-                            <p key={index}>{paragraph}</p>
+                            <p key={index} className="whitespace-pre-line">
+                              {paragraph}
+                            </p>
                           ))}
                       </div>
                     </div>
@@ -410,8 +410,8 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
             </div>
 
             {/* Save Button */}
-            <div className="text-center">
-              <button className="px-8 py-3 bg-posBlue text-white font-medium rounded-lg hover:bg-posDarkBlue transition-colors duration-200 shadow-lg">
+            <div className="text-center pb-4">
+              <button className="px-6 sm:px-8 py-2 sm:py-3 bg-white text-posOrange font-medium rounded-lg text-sm sm:text-base hover:bg-posOrange hover:text-white transition-colors duration-200 shadow-lg">
                 Simpan Semua Perubahan
               </button>
             </div>
