@@ -131,7 +131,7 @@ function Receipt({ data }: ReceiptProps) {
         {/* MAP & DETAIL KIRIMAN */}
         <div className="m-4 flex flex-col md:flex-row gap-4 items-center">
           {/* MAP */}
-          <div className="w-[450px] h-96 shrink-0 bg-posDarkBlue rounded-md flex flex-col shadow-lg">
+          <div className="w-full max-w-[450px] h-96 shrink-0 bg-posDarkBlue rounded-md flex flex-col shadow-lg">
             <div className="text-posOrange font-semibold flex m-2 justify-between">
               <span>State Kiriman</span>
               <div className="flex items-center gap-2">
@@ -166,19 +166,19 @@ function Receipt({ data }: ReceiptProps) {
                   {data.data.origin_office}
                 </div>
                 <div className="relative w-4 h-4">
-                  <div className=" absolute inset-0 bg-posOrange rounded-full border-2 border-white "></div>
-                  <div className=" absolute left-1/2 top-full -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-8 border-t-posOrange "></div>{" "}
+                  <div className="absolute inset-0 bg-posOrange rounded-full border-2 border-white"></div>
+                  <div className="absolute left-1/2 top-full -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-8 border-t-posOrange"></div>
                 </div>
               </div>
 
               {/* DESTINATION */}
               <div className="absolute bottom-10 right-2 flex flex-col items-center">
-                <div className=" max-w-30 bg-white text-posBlue px-2 py-1 rounded-3xl text-center mb-1 text-sm font-bold">
+                <div className="max-w-30 bg-white text-posBlue px-2 py-1 rounded-3xl text-center mb-1 text-sm font-bold">
                   {data.data.destination_office}
                 </div>
                 <div className="relative w-4 h-4">
-                  <div className=" absolute inset-0 bg-posOrange rounded-full border-2 border-white "></div>
-                  <div className=" absolute left-1/2 top-full -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-8 border-t-posOrange "></div>
+                  <div className="absolute inset-0 bg-posOrange rounded-full border-2 border-white"></div>
+                  <div className="absolute left-1/2 top-full -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-8 border-t-posOrange"></div>
                 </div>
               </div>
               {/* EARTH */}
@@ -208,7 +208,7 @@ function Receipt({ data }: ReceiptProps) {
           </div>
 
           {/* DETAIL KIRIMAN */}
-          <div className="w-[450px] h-96 shrink-0 flex flex-col shadow-lg bg-gray-100 rounded-md">
+          <div className="w-full max-w-[450px] h-96 shrink-0 flex flex-col shadow-lg bg-gray-100 rounded-md">
             {/* TITLE */}
             <div className="bg-posOrange rounded-t-md p-4 text-white text-center">
               <div className="text-base font-medium leading-tight">
@@ -220,7 +220,7 @@ function Receipt({ data }: ReceiptProps) {
             </div>
 
             {/* DETAIL */}
-            <div className="p-2 overflow-y-auto flex-1 ">
+            <div className="p-2 overflow-y-auto flex-1">
               <div>
                 {dataKiriman.map((item, i) => (
                   <ul
@@ -241,7 +241,7 @@ function Receipt({ data }: ReceiptProps) {
       {/* PROGRESS & BUTTONS */}
       <div className="m-4 flex flex-col md:flex-row gap-4 items-center justify-center">
         {/* PROGRESS */}
-        <div className="w-[450px] self-stretch shrink-0 flex flex-col shadow-lg bg-gray-100 rounded-md text-posBlue">
+        <div className="w-full max-w-[450px] self-stretch shrink-0 flex flex-col shadow-lg bg-gray-100 rounded-md text-posBlue">
           <div className="m-2 flex items-baseline">
             <div className="flex flex-col">
               <span className="text-base font-bold">Progress Kiriman</span>
@@ -293,7 +293,7 @@ function Receipt({ data }: ReceiptProps) {
         </div>
 
         {/* BUTTONS AND DOWNLOAD */}
-        <div className="w-[450px] self-stretch shrink-0 flex flex-col gap-4 md:gap-2">
+        <div className="w-full max-w-[450px] self-stretch shrink-0 flex flex-col gap-4 md:gap-2">
           {/* BUTTONS AND NOTE*/}
           <div className="w-full shadow-lg bg-gray-100 rounded-md">
             {/* BUTTONS */}
@@ -311,7 +311,7 @@ function Receipt({ data }: ReceiptProps) {
             </div>
           </div>
           {/* DOWNLOAD APPS */}
-          <div className="w-full shadow-lg bg-gray-100 rounded-md p-2 felx flex-col items-center text-center">
+          <div className="w-full shadow-lg bg-gray-100 rounded-md p-2 flex flex-col items-center text-center">
             <span className="text-posBlue font-bold">
               Download Aplikasi Pospay & Pos Aja!
             </span>
@@ -353,7 +353,7 @@ function Receipt({ data }: ReceiptProps) {
         {/* Ads 1 */}
         <Link
           href="/article"
-          className="flex w-[450px] h-28 p-2 shrink-0 bg-gray-100 rounded-md text-posBlue shadow-lg hover:bg-gray-300"
+          className="flex w-full max-w-[450px] h-28 p-2 shrink-0 bg-gray-100 rounded-md text-posBlue shadow-lg hover:bg-gray-300"
         >
           <img
             src="/ads-1.png"
@@ -377,7 +377,7 @@ function Receipt({ data }: ReceiptProps) {
         {/* Ads 2 */}
         <Link
           href="/article-2"
-          className="flex w-[450px] h-28 p-2 shrink-0 bg-gray-100 rounded-md text-posBlue shadow-lg hover:bg-gray-300"
+          className="flex w-full max-w-[450px] h-28 p-2 shrink-0 bg-gray-100 rounded-md text-posBlue shadow-lg hover:bg-gray-300"
         >
           <img
             src="/ads-2.png"
