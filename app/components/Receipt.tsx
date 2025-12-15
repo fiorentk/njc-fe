@@ -34,19 +34,7 @@ interface ReceiptProps {
 }
 
 function Receipt({ data }: ReceiptProps) {
-  const dataKiriman = [
-    { name: "Nomor Resi", value: data.data.connote },
-    { name: "Tanggal Pengiriman", value: data.data.connote_created_date },
-    { name: "Layanan", value: data.data.service },
-    { name: "Pengirim", value: data.data.sender },
-    { name: "Alamat Pengirim", value: data.data.origin_address },
-    { name: "Penerima", value: data.data.recipient },
-    { name: "Alamat Penerima", value: data.data.destination_address },
-  ];
-
-  const progressKiriman = data.data.connote_progress;
-
-  const formatDate = (iso: string) => {
+  const formatDateTime = (iso: string) => {
     const d = new Date(iso);
     const tanggal = d.toLocaleDateString("id-ID", {
       day: "2-digit",
@@ -60,6 +48,29 @@ function Receipt({ data }: ReceiptProps) {
 
     return `${tanggal} ${jam}`;
   };
+  const formatDate = (iso: string) => {
+    const d = new Date(iso);
+    const tanggal = d.toLocaleDateString("id-ID", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+    return `${tanggal}`;
+  };
+  const dataKiriman = [
+    { name: "Nomor Resi", value: data.data.connote },
+    {
+      name: "Tanggal Pengiriman",
+      value: formatDate(data.data.connote_created_date),
+    },
+    { name: "Layanan", value: data.data.service },
+    { name: "Pengirim", value: data.data.sender },
+    { name: "Alamat Pengirim", value: data.data.origin_address },
+    { name: "Penerima", value: data.data.recipient },
+    { name: "Alamat Penerima", value: data.data.destination_address },
+  ];
+
+  const progressKiriman = data.data.connote_progress;
 
   const created = new Date(data.data.connote_created_date);
   const eta = new Date(created);
@@ -185,12 +196,12 @@ function Receipt({ data }: ReceiptProps) {
             </div>
             <div className="text-right">
               <span className="text-gray-400 text-[11px] mx-2 font-light">
-                Untuk detail bisa dilihat di aplikasi
+                Untuk Detail Lengkap Dapat Dilihat Melalui
                 <a
                   className="ml-1 underline hover:font-normal"
                   href="https://linktr.ee/lasingan"
                 >
-                  PosAja!
+                  Aplikasi PosAja!
                 </a>
               </span>
             </div>
@@ -272,7 +283,7 @@ function Receipt({ data }: ReceiptProps) {
                         isCurrent ? "text-base font-semibold mb-2" : "text-sm"
                       }`}
                     >
-                      {formatDate(item.timestamp)}
+                      {formatDateTime(item.timestamp)}
                     </span>
                   </div>
                 </li>
@@ -332,7 +343,7 @@ function Receipt({ data }: ReceiptProps) {
         </div>
       </div>
       {/* Anda Mungkin Tertarik */}
-      <div className="m-4 flex">
+      <div className="m-2 flex">
         <div className="w-full border-t border-dashed border-posBlue my-4"></div>
         <div className="text-posBlue p-1 min-w-max">Anda Mungkin Tertarik</div>
         <div className="w-full border-t border-dashed border-posBlue my-4"></div>
@@ -365,7 +376,7 @@ function Receipt({ data }: ReceiptProps) {
 
         {/* Ads 2 */}
         <Link
-          href="/article"
+          href="/article-2"
           className="flex w-[450px] h-28 p-2 shrink-0 bg-gray-100 rounded-md text-posBlue shadow-lg hover:bg-gray-300"
         >
           <img
@@ -376,13 +387,13 @@ function Receipt({ data }: ReceiptProps) {
 
           <div className="flex flex-col justify-center">
             <span className="text-sm font-semibold">
-              Jangan Ketinggalan Ini Cara Berjualan Online 2025
+              Reverse Logistics Skincare Kini Bisa Lewat POSAJA!
             </span>
 
             <span className="text-xs leading-snug">
-              Belanja online adalah tren baru yang terjadi di masyarakat pada
-              saat ini. Berikut adalah tips agar penjualan dan kiriman mu bisa
-              lebih efisien... Baca Lebih Lanjut
+              Reverse logistics skincare jadi solusi penting di era belanja
+              online. Dengan POSAJA, proses retur jadi lebih praktis, cepat, dan
+              efisien untuk penjual maupun pembeli... Baca Lebih Lanjut
             </span>
           </div>
         </Link>

@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 
 export default function ResultPage() {
@@ -10,17 +11,26 @@ export default function ResultPage() {
     link: "https://resipos.vercel.app/resi/P2021304810014",
   };
 
+  const copyToClipboard = (text: string) => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).catch(() => {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
         <div className="flex items-center space-x-2">
-          <div className="bg-orange-600 text-white font-bold text-xl px-3 py-2 rounded-lg">
-            PosAja
-          </div>
-          <div className="bg-gray-200 text-gray-700 text-xs font-medium px-2 py-1 rounded">
-            umkm
-          </div>
+          <div className="text-orange-600 font-bold text-xl">PosAja</div>
+          <div className="text-gray-500 text-sm">umkm</div>
         </div>
         <Link href="/form">
           <button className="flex items-center space-x-2 bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors w-full sm:w-auto justify-center">
@@ -95,14 +105,22 @@ export default function ResultPage() {
                   {trackingData.receiverName}
                 </td>
                 <td className="px-6 py-5 whitespace-nowrap">
-                  <a
-                    href={trackingData.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-3 py-1.5 border border-gray-300 rounded-md text-sm font-medium text-blue-600 hover:bg-blue-50 hover:border-blue-400 transition-colors"
-                  >
-                    Lihat
-                  </a>
+                  <div className="flex flex-col space-y-2">
+                    <a
+                      href={trackingData.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center px-3 py-1.5 border border-gray-300 rounded-md text-sm font-medium text-blue-600 hover:bg-blue-50 hover:border-blue-400 transition-colors"
+                    >
+                      Lihat
+                    </a>
+                    <button
+                      onClick={() => copyToClipboard(trackingData.link)}
+                      className="inline-flex items-center justify-center px-3 py-1.5 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                    >
+                      Salin
+                    </button>
+                  </div>
                 </td>
                 <td className="px-6 py-5 whitespace-nowrap">
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 border border-green-200">
@@ -168,7 +186,7 @@ export default function ResultPage() {
             <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
               LINK PELACAKAN
             </div>
-            <div className="mt-1">
+            <div className="mt-1 flex flex-col gap-2">
               <a
                 href={trackingData.link}
                 target="_blank"
@@ -177,6 +195,12 @@ export default function ResultPage() {
               >
                 Lihat Pelacakan
               </a>
+              <button
+                onClick={() => copyToClipboard(trackingData.link)}
+                className="block w-full text-center px-4 py-2 bg-gray-50 text-gray-700 font-medium rounded-lg border border-gray-300 hover:bg-gray-100 transition-colors"
+              >
+                Salin Link
+              </button>
             </div>
           </div>
         </div>

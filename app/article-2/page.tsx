@@ -19,15 +19,15 @@ export default function page() {
           {/* TITLE */}
           <div className="bg-posOrange px-3 sm:px-5 py-3 sm:py-4">
             <h1 className="text-white text-center font-black break-words text-base sm:text-xl md:text-2xl lg:text-3xl leading-snug">
-              Tips Berjualan Online Mudah dengan POSAJA UMKM
+              Reverse Logistics Skincare Kini Bisa Lewat POSAJA!
             </h1>
           </div>
 
           {/* IMAGE */}
           <div className="w-full">
             <img
-              src="ads-1-full.png"
-              alt="ads-1"
+              src="ads-2-full.png"
+              alt="ads-2"
               className="w-full h-40 sm:h-52 md:h-64 lg:h-72 object-cover"
               style={{ objectPosition: "50% 20%" }}
             />
@@ -36,80 +36,47 @@ export default function page() {
           {/* TEXT */}
           <div className="text-gray-800 break-words space-y-3 px-3 sm:px-5 py-4 text-[11px] sm:text-xs md:text-sm lg:text-base leading-relaxed">
             <p>
-              Di era digital seperti sekarang, pelaku UMKM tidak lagi harus
-              ribet untuk mulai berjualan online. Dengan hadirnya POSAJA UMKM,
-              proses jualan menjadi jauh lebih praktis — mulai dari pengelolaan
-              pesanan hingga pengiriman barang ke pelanggan. Agar pengalaman
-              berjualanmu makin optimal, berikut beberapa tips berjualan online
-              mudah yang bisa kamu terapkan:
+              Industri kecantikan di Indonesia menghasilkan ribuan ton limbah
+              kemasan skincare setiap tahun, terutama plastik dan kaca yang
+              sulit terurai. Meski banyak brand memiliki komitmen keberlanjutan,
+              belum tersedia sistem reverse logistics yang efisien dan mudah
+              diakses konsumen. Di sisi lain, Pos Indonesia masih memiliki
+              peluang besar di segmen reverse logistics yang belum tergarap
+              optimal, padahal didukung jaringan outlet dan logistik yang luas.
             </p>
 
-            <div className="space-y-3">
-              <div>
-                <div className="font-semibold text-[11px] sm:text-xs md:text-sm lg:text-base">
-                  1. Manfaatkan Fitur Pengelolaan Pesanan
-                </div>
-                <p className="mt-1">
-                  Salah satu kunci sukses jualan online adalah kemampuan
-                  mengatur pesanan dengan rapi. POSAJA UMKM membantu kamu
-                  memantau seluruh order dalam satu dashboard, sehingga kamu
-                  tidak perlu lagi mencatat secara manual.
-                </p>
-              </div>
+            <p>
+              REPA (Reverse Kemasan dengan PosAja) hadir sebagai solusi
+              pengembalian kemasan kosong skincare dari konsumen ke produsen
+              melalui loket kantor pos, aplikasi PosAja, atau penjemputan di
+              toko skincare. Layanan ini memposisikan Pos Indonesia sebagai
+              mitra circular branding bagi brand skincare tanpa memerlukan
+              investasi baru, karena memanfaatkan outlet, SDM, armada, serta
+              sistem IT yang sudah ada.
+            </p>
 
-              <div>
-                <div className="font-semibold text-[11px] sm:text-xs md:text-sm lg:text-base">
-                  2. Gunakan Layanan Pengiriman Terintegrasi
-                </div>
-                <p className="mt-1">
-                  Kamu bisa langsung membuat resi dan mengatur pengiriman tanpa
-                  keluar dari aplikasi. Prosesnya cepat, mudah, dan efisien.
-                </p>
-              </div>
+            <p>
+              REPA juga menawarkan program reward bagi konsumen berupa poin
+              PosAja atau loyalty program dari brand mitra. Skema ini mendorong
+              partisipasi konsumen sekaligus memperkuat citra ramah lingkungan
+              bagi brand dan Pos Indonesia.
+            </p>
 
-              <div>
-                <div className="font-semibold text-[11px] sm:text-xs md:text-sm lg:text-base">
-                  3. Berikan Update Pengiriman Real-Time
-                </div>
-                <p className="mt-1">
-                  Informasi pengiriman real-time bikin pelanggan makin percaya
-                  dengan toko kamu.
-                </p>
-              </div>
+            <p>
+              Keunggulan utama REPA adalah peningkatan utilisasi outlet Pos,
+              penguatan citra Pos Indonesia sebagai pelopor logistik hijau,
+              serta dukungan nyata terhadap program ESG dan ekonomi sirkular
+              nasional. Implementasi awal dilakukan melalui pilot project di
+              Jabodetabek, Surabaya, dan Medan, dengan menggandeng brand
+              skincare berkomitmen keberlanjutan.
+            </p>
 
-              <div>
-                <div className="font-semibold text-[11px] sm:text-xs md:text-sm lg:text-base">
-                  4. Gunakan Deskripsi Produk yang Jelas
-                </div>
-                <p className="mt-1">
-                  Sertakan detail penting seperti ukuran, bahan, warna, dan
-                  keunggulan produk.
-                </p>
-              </div>
-
-              <div>
-                <div className="font-semibold text-[11px] sm:text-xs md:text-sm lg:text-base">
-                  5. Analisis Riwayat Transaksi
-                </div>
-                <p className="mt-1">
-                  Data transaksi bantu kamu tahu produk mana yang paling laku.
-                </p>
-              </div>
-
-              <div>
-                <div className="font-semibold text-[11px] sm:text-xs md:text-sm lg:text-base">
-                  6. Berikan Pelayanan Responsif
-                </div>
-                <p className="mt-1">
-                  Fast response bikin peluang closing makin besar.
-                </p>
-              </div>
-            </div>
-
-            <p className="pt-2">
-              Berjualan online tidak harus rumit. Dengan POSAJA UMKM, kamu bisa
-              mengelola bisnis lebih efisien, meningkatkan kepuasan pelanggan,
-              dan mengembangkan usaha tanpa ribet.
+            <p>
+              Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan
+              kepuasan konsumen 75% dan pendapatan Rp175 juta. Dalam 24 bulan,
+              target meningkat menjadi 500.000 kemasan dan pendapatan Rp1,75
+              miliar. REPA menjadi solusi praktis yang memberi manfaat langsung
+              bagi lingkungan, brand skincare, dan Pos Indonesia.
             </p>
           </div>
 

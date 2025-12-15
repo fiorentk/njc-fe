@@ -110,8 +110,8 @@ export default function App() {
     address: "J** K***** H*** M******* A*** N* 7 S*******",
   };
 
-  const product = "Jilbab Musantara Special";
-
+  const product = "Jilbab Nusantara Special";
+  const [selectedService, setSelectedService] = useState("Pos Kilat Khusus");
   return (
     <div className="min-h-screen bg-gray-50 p-4 sm:p-6 relative">
       {/* Toast Notification */}
@@ -248,9 +248,21 @@ export default function App() {
               </div>
             </div>
           </div>
+          <div className="bg-white rounded-lg shadow p-4 sm:p-6 mb-6">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Layanan Pengiriman
+            </label>
+            <select
+              value={selectedService}
+              onChange={(e) => setSelectedService(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            >
+              <option value="Pos Reguler">Pos Reguler</option>
+              <option value="Pos Nexy Day">Pos Next Day</option>
+            </select>
+          </div>
         </div>
 
-        {/* Sidebar */}
         <div className="lg:col-span-1">
           <div className="bg-white rounded-lg shadow p-4 sm:p-6 sticky top-6">
             <button

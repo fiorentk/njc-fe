@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         phone: waJid,
-        message: `Terima kasih telah bertransaksi di toko kami, paket kamu telah diproses/dikirim.\nAnda bisa melakukan pengecekan paket anda melalui link berikut:\nhttps://resipos.vercel.app/resi/P2021304810014`,
+        message: `Terima kasih telah bertransaksi di toko kami, paket Anda telah diproses/dikirim.\nAnda bisa melakukan pengecekan paket anda melalui link berikut:\nhttps://resipos.vercel.app/resi/P2021304810014`,
         reply_message_id: replyId,
         is_forwarded: false,
       }),
