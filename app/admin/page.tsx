@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { Trash2 } from "lucide-react";
 
 export default function AdminPage() {
   // State for stamp management
-  const [stamps, setStamps] = useState([
+  const [stamps, setStamps] = useState<
+    Array<{ id: number; city: string; imageUrl: string }>
+  >([
     {
       id: 1,
       city: "Jakarta",
@@ -22,14 +25,18 @@ export default function AdminPage() {
     },
   ]);
 
-  const [newCity, setNewCity] = useState("");
-  const [newImageUrl, setNewImageUrl] = useState("");
+  const [newCity, setNewCity] = useState<string>("");
+  const [newImageUrl, setNewImageUrl] = useState<string>("");
 
-  // State for articles - matching the exact structure from the provided article pages
-  const [article1, setArticle1] = useState({
-    title: "Tips Berjualan Online Mudah dengan POSAJA UMKM",
-    image: "ads-1-full.png",
-    content: `Di era digital seperti sekarang, pelaku UMKM tidak lagi harus ribet untuk mulai berjualan online. Dengan hadirnya POSAJA UMKM, proses jualan menjadi jauh lebih praktis — mulai dari pengelolaan pesanan hingga pengiriman barang ke pelanggan. Agar pengalaman berjualanmu makin optimal, berikut beberapa tips berjualan online mudah yang bisa kamu terapkan:
+  // State for articles - now using array structure like stamps
+  const [articles, setArticles] = useState<
+    Array<{ id: number; title: string; image: string; content: string }>
+  >([
+    {
+      id: 1,
+      title: "Tips Berjualan Online Mudah dengan POSAJA UMKM",
+      image: "ads-1-full.png",
+      content: `Di era digital seperti sekarang, pelaku UMKM tidak lagi harus ribet untuk mulai berjualan online. Dengan hadirnya POSAJA UMKM, proses jualan menjadi jauh lebih praktis — mulai dari pengelolaan pesanan hingga pengiriman barang ke pelanggan. Agar pengalaman berjualanmu makin optimal, berikut beberapa tips berjualan online mudah yang bisa kamu terapkan:
 
 1. Manfaatkan Fitur Pengelolaan Pesanan
 Salah satu kunci sukses jualan online adalah kemampuan mengatur pesanan dengan rapi. POSAJA UMKM membantu kamu memantau seluruh order dalam satu dashboard, sehingga kamu tidak perlu lagi mencatat secara manual.
@@ -50,12 +57,12 @@ Data transaksi bantu kamu tahu produk mana yang paling laku.
 Fast response bikin peluang closing makin besar.
 
 Berjualan online tidak harus rumit. Dengan POSAJA UMKM, kamu bisa mengelola bisnis lebih efisien, meningkatkan kepuasan pelanggan, dan mengembangkan usaha tanpa ribet.`,
-  });
-
-  const [article2, setArticle2] = useState({
-    title: "Reverse Logistics Skincare Kini Bisa Lewat POSAJA!",
-    image: "ads-2-full.png",
-    content: `Industri kecantikan di Indonesia menghasilkan ribuan ton limbah kemasan skincare setiap tahun, terutama plastik dan kaca yang sulit terurai. Meski banyak brand memiliki komitmen keberlanjutan, belum tersedia sistem reverse logistics yang efisien dan mudah diakses konsumen. Di sisi lain, Pos Indonesia masih memiliki peluang besar di segmen reverse logistics yang belum tergarap optimal, padahal didukung jaringan outlet dan logistik yang luas.
+    },
+    {
+      id: 2,
+      title: "Reverse Logistics Skincare Kini Bisa Lewat POSAJA!",
+      image: "ads-2-full.png",
+      content: `Industri kecantikan di Indonesia menghasilkan ribuan ton limbah kemasan skincare setiap tahun, terutama plastik dan kaca yang sulit terurai. Meski banyak brand memiliki komitmen keberlanjutan, belum tersedia sistem reverse logistics yang efisien dan mudah diakses konsumen. Di sisi lain, Pos Indonesia masih memiliki peluang besar di segmen reverse logistics yang belum tergarap optimal, padahal didukung jaringan outlet dan logistik yang luas.
 
 REPA (Reverse Kemasan dengan PosAja) hadir sebagai solusi pengembalian kemasan kosong skincare dari konsumen ke produsen melalui loket kantor pos, aplikasi PosAja, atau penjemputan di toko skincare. Layanan ini memposisikan Pos Indonesia sebagai mitra circular branding bagi brand skincare tanpa memerlukan investasi baru, karena memanfaatkan outlet, SDM, armada, serta sistem IT yang sudah ada.
 
@@ -64,7 +71,12 @@ REPA juga menawarkan program reward bagi konsumen berupa poin PosAja atau loyalt
 Keunggulan utama REPA adalah peningkatan utilisasi outlet Pos, penguatan citra Pos Indonesia sebagai pelopor logistik hijau, serta dukungan nyata terhadap program ESG dan ekonomi sirkular nasional. Implementasi awal dilakukan melalui pilot project di Jabodetabek, Surabaya, dan Medan, dengan menggandeng brand skincare berkomitmen keberlanjutan.
 
 Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan konsumen 75% dan pendapatan Rp175 juta. Dalam 24 bulan, target meningkat menjadi 500.000 kemasan dan pendapatan Rp1,75 miliar. REPA menjadi solusi praktis yang memberi manfaat langsung bagi lingkungan, brand skincare, dan Pos Indonesia.`,
-  });
+    },
+  ]);
+
+  const [newArticleTitle, setNewArticleTitle] = useState<string>("");
+  const [newArticleImage, setNewArticleImage] = useState<string>("");
+  const [newArticleContent, setNewArticleContent] = useState<string>("");
 
   // Add new stamp
   const handleAddStamp = () => {
@@ -80,19 +92,47 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
     }
   };
 
-  // Delete stamp - explicitly typed parameter
+  // Delete stamp
   const handleDeleteStamp = (id: number) => {
     setStamps(stamps.filter((stamp) => stamp.id !== id));
   };
 
-  // Update article 1
-  const handleUpdateArticle1 = (field: string, value: string) => {
-    setArticle1((prev) => ({ ...prev, [field]: value }));
+  // Add new article
+  const handleAddArticle = () => {
+    if (
+      newArticleTitle.trim() &&
+      newArticleImage.trim() &&
+      newArticleContent.trim()
+    ) {
+      const newArticle = {
+        id: articles.length + 1,
+        title: newArticleTitle.trim(),
+        image: newArticleImage.trim(),
+        content: newArticleContent.trim(),
+      };
+      setArticles([...articles, newArticle]);
+      setNewArticleTitle("");
+      setNewArticleImage("");
+      setNewArticleContent("");
+    }
   };
 
-  // Update article 2
-  const handleUpdateArticle2 = (field: string, value: string) => {
-    setArticle2((prev) => ({ ...prev, [field]: value }));
+  // Delete article
+  const handleDeleteArticle = (id: number) => {
+    setArticles(articles.filter((article) => article.id !== id));
+  };
+
+  // Update article
+  const handleUpdateArticle = (
+    id: number,
+    field: keyof (typeof articles)[0],
+    value: string
+  ) => {
+    setArticles(
+      articles.map((article) =>
+        article.id === id ? { ...article, [field]: value } : article
+      )
+    );
   };
 
   return (
@@ -138,7 +178,7 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
                     value={newCity}
                     onChange={(e) => setNewCity(e.target.value)}
                     placeholder="Masukkan nama kota"
-                    className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:ring-2 focus:ring-posBlue focus:border-posring-posBlue"
+                    className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
                 <div>
@@ -150,7 +190,7 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
                     value={newImageUrl}
                     onChange={(e) => setNewImageUrl(e.target.value)}
                     placeholder="https://example.com/image.jpg"
-                    className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:ring-2 focus:ring-posBlue focus:border-posring-posBlue"
+                    className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
                 <div>
@@ -207,8 +247,9 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
                         <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap">
                           <button
                             onClick={() => handleDeleteStamp(stamp.id)}
-                            className="text-red-600 hover:text-red-900 font-medium text-xs sm:text-sm"
+                            className="text-red-600 hover:text-red-900 font-medium text-xs sm:text-sm flex items-center gap-1"
                           >
+                            <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
                             Hapus
                           </button>
                         </td>
@@ -225,196 +266,159 @@ Dalam 6 bulan, REPA ditargetkan mengumpulkan 50.000 kemasan dengan kepuasan kons
             </div>
           </div>
 
-          {/* Edit Article Section - Matching the exact article page structure */}
-          <div className="space-y-6 sm:space-y-8">
-            {/* Article 1 */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="p-4 sm:p-6">
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">
-                  Edit Artikel 1
-                </h2>
+          {/* Articles Management Section - Now matching stamps structure */}
+          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div className="p-4 sm:p-6 border-b border-gray-200">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
+                Manajemen Artikel
+              </h2>
 
-                <div className="space-y-3 sm:space-y-4">
-                  <div>
-                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
-                      Judul Artikel
-                    </label>
-                    <input
-                      type="text"
-                      value={article1.title}
-                      onChange={(e) =>
-                        handleUpdateArticle1("title", e.target.value)
-                      }
-                      className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                      placeholder="Masukkan judul artikel"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
-                      URL Gambar
-                    </label>
-                    <input
-                      type="text"
-                      value={article1.image}
-                      onChange={(e) =>
-                        handleUpdateArticle1("image", e.target.value)
-                      }
-                      placeholder="ads-1-full.png atau URL gambar"
-                      className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
-                      Konten Artikel
-                    </label>
-                    <textarea
-                      value={article1.content}
-                      onChange={(e) =>
-                        handleUpdateArticle1("content", e.target.value)
-                      }
-                      placeholder="Masukkan konten artikel lengkap..."
-                      className="w-full h-40 sm:h-64 p-2 sm:p-4 border border-gray-300 rounded-lg text-xs sm:text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500 resize-none"
-                    />
-                  </div>
-
-                  {/* Article Preview - Exact match to the article page structure */}
-                  <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-gray-50 rounded-lg">
-                    <h3 className="text-sm sm:text-lg font-semibold text-gray-800 mb-2 sm:mb-3">
-                      Pratinjau Halaman Artikel:
-                    </h3>
-                    <div className="bg-gray-50 rounded-lg sm:rounded-xl shadow-lg overflow-hidden max-w-3xl mx-auto">
-                      {/* TITLE */}
-                      <div className="bg-orange-500 px-3 sm:px-4 py-2 sm:py-3">
-                        <h1 className="text-white text-center font-black break-words text-sm sm:text-lg md:text-xl leading-snug">
-                          {article1.title}
-                        </h1>
-                      </div>
-
-                      {/* IMAGE */}
-                      <div className="w-full">
-                        <img
-                          src={article1.image}
-                          alt="Pratinjau artikel"
-                          className="w-full h-32 sm:h-48 md:h-64 object-cover"
-                          style={{ objectPosition: "50% 20%" }}
-                        />
-                      </div>
-
-                      {/* TEXT */}
-                      <div className="text-gray-800 break-words space-y-2 sm:space-y-3 px-3 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm md:text-base leading-relaxed">
-                        {article1.content
-                          .split("\n\n")
-                          .map((paragraph, index) => (
-                            <p key={index} className="whitespace-pre-line">
-                              {paragraph}
-                            </p>
-                          ))}
-                      </div>
-                    </div>
-                  </div>
+              {/* Add New Article Form */}
+              <div className="grid grid-cols-1 gap-3 sm:gap-4 mb-4 sm:mb-6 p-3 sm:p-4 bg-gray-50 rounded-lg">
+                <div>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
+                    Judul Artikel
+                  </label>
+                  <input
+                    type="text"
+                    value={newArticleTitle}
+                    onChange={(e) => setNewArticleTitle(e.target.value)}
+                    placeholder="Masukkan judul artikel"
+                    className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
+                    URL Gambar
+                  </label>
+                  <input
+                    type="text"
+                    value={newArticleImage}
+                    onChange={(e) => setNewArticleImage(e.target.value)}
+                    placeholder="ads-1-full.png atau URL gambar"
+                    className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
+                    Konten Artikel
+                  </label>
+                  <textarea
+                    value={newArticleContent}
+                    onChange={(e) => setNewArticleContent(e.target.value)}
+                    placeholder="Masukkan konten artikel lengkap..."
+                    className="w-full h-24 sm:h-32 p-2 sm:p-3 border border-gray-300 rounded-lg text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
+                  />
+                </div>
+                <div>
+                  <button
+                    onClick={handleAddArticle}
+                    className="w-full px-3 sm:px-4 py-2 bg-white text-posOrange border border-posOrange font-medium rounded-md text-sm sm:text-base hover:bg-posOrange hover:text-white transition-colors duration-200"
+                  >
+                    Tambah Artikel
+                  </button>
                 </div>
               </div>
-            </div>
 
-            {/* Article 2 */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="p-4 sm:p-6">
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">
-                  Edit Artikel 2
-                </h2>
-
-                <div className="space-y-3 sm:space-y-4">
-                  <div>
-                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
-                      Judul Artikel
-                    </label>
-                    <input
-                      type="text"
-                      value={article2.title}
-                      onChange={(e) =>
-                        handleUpdateArticle2("title", e.target.value)
-                      }
-                      className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                      placeholder="Masukkan judul artikel"
-                    />
+              {/* Articles Table - Responsive */}
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200 text-xs sm:text-sm">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-2 sm:px-6 py-2 sm:py-3 text-left font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
+                        ID
+                      </th>
+                      <th className="px-2 sm:px-6 py-2 sm:py-3 text-left font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
+                        Judul
+                      </th>
+                      <th className="px-2 sm:px-6 py-2 sm:py-3 text-left font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
+                        Gambar
+                      </th>
+                      <th className="px-2 sm:px-6 py-2 sm:py-3 text-left font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">
+                        Aksi
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {articles.map((article) => (
+                      <tr key={article.id} className="hover:bg-gray-50">
+                        <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap font-medium text-gray-900">
+                          {article.id}
+                        </td>
+                        <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-gray-900 max-w-[150px] sm:max-w-xs truncate">
+                          {article.title}
+                        </td>
+                        <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap">
+                          <img
+                            src={article.image}
+                            alt={article.title}
+                            className="w-12 sm:w-16 h-9 sm:h-12 object-cover border border-gray-200 rounded"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.src =
+                                "https://placehold.co/64x48/E5E7EB/6B7280?text=Image";
+                            }}
+                          />
+                        </td>
+                        <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap">
+                          <div className="flex flex-col sm:flex-row gap-1 sm:gap-2">
+                            <button
+                              onClick={() => handleDeleteArticle(article.id)}
+                              className="text-red-600 hover:text-red-900 font-medium text-xs sm:text-sm flex items-center gap-1"
+                            >
+                              <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
+                              Hapus
+                            </button>
+                            <button
+                              onClick={() => {
+                                // Open edit modal or inline edit
+                                const field = prompt(
+                                  "Edit field (title/image/content):",
+                                  "title"
+                                );
+                                if (
+                                  field &&
+                                  (field === "title" ||
+                                    field === "image" ||
+                                    field === "content")
+                                ) {
+                                  const value = prompt(
+                                    `New ${field}:`,
+                                    article[field]
+                                  );
+                                  if (value !== null) {
+                                    handleUpdateArticle(
+                                      article.id,
+                                      field,
+                                      value
+                                    );
+                                  }
+                                }
+                              }}
+                              className="text-blue-600 hover:text-blue-900 font-medium text-xs sm:text-sm"
+                            >
+                              Edit
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                {articles.length === 0 && (
+                  <div className="text-center py-6 text-gray-500 text-sm">
+                    Belum ada artikel
                   </div>
-
-                  <div>
-                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
-                      URL Gambar
-                    </label>
-                    <input
-                      type="text"
-                      value={article2.image}
-                      onChange={(e) =>
-                        handleUpdateArticle2("image", e.target.value)
-                      }
-                      placeholder="ads-2-full.png atau URL gambar"
-                      className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
-                      Konten Artikel
-                    </label>
-                    <textarea
-                      value={article2.content}
-                      onChange={(e) =>
-                        handleUpdateArticle2("content", e.target.value)
-                      }
-                      placeholder="Masukkan konten artikel lengkap..."
-                      className="w-full h-40 sm:h-64 p-2 sm:p-4 border border-gray-300 rounded-lg text-xs sm:text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500 resize-none"
-                    />
-                  </div>
-
-                  {/* Article Preview - Exact match to the article page structure */}
-                  <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-gray-50 rounded-lg">
-                    <h3 className="text-sm sm:text-lg font-semibold text-gray-800 mb-2 sm:mb-3">
-                      Pratinjau Halaman Artikel:
-                    </h3>
-                    <div className="bg-gray-50 rounded-lg sm:rounded-xl shadow-lg overflow-hidden max-w-3xl mx-auto">
-                      {/* TITLE */}
-                      <div className="bg-orange-500 px-3 sm:px-4 py-2 sm:py-3">
-                        <h1 className="text-white text-center font-black break-words text-sm sm:text-lg md:text-xl leading-snug">
-                          {article2.title}
-                        </h1>
-                      </div>
-
-                      {/* IMAGE */}
-                      <div className="w-full">
-                        <img
-                          src={article2.image}
-                          alt="Pratinjau artikel"
-                          className="w-full h-32 sm:h-48 md:h-64 object-cover"
-                          style={{ objectPosition: "50% 20%" }}
-                        />
-                      </div>
-
-                      {/* TEXT */}
-                      <div className="text-gray-800 break-words space-y-2 sm:space-y-3 px-3 sm:px-4 py-3 sm:py-4 text-xs sm:text-sm md:text-base leading-relaxed">
-                        {article2.content
-                          .split("\n\n")
-                          .map((paragraph, index) => (
-                            <p key={index} className="whitespace-pre-line">
-                              {paragraph}
-                            </p>
-                          ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
+          </div>
 
-            {/* Save Button */}
-            <div className="text-center pb-4">
-              <button className="px-6 sm:px-8 py-2 sm:py-3 bg-white text-posOrange font-medium rounded-lg text-sm sm:text-base hover:bg-posOrange hover:text-white transition-colors duration-200 shadow-lg">
-                Simpan Semua Perubahan
-              </button>
-            </div>
+          {/* Save Button */}
+          <div className="text-center mt-6 sm:mt-8 pb-4">
+            <button className="px-6 sm:px-8 py-2 sm:py-3 bg-white text-posOrange font-medium rounded-lg text-sm sm:text-base hover:bg-posOrange hover:text-white transition-colors duration-200 shadow-lg">
+              Simpan Semua Perubahan
+            </button>
           </div>
         </div>
       </main>
