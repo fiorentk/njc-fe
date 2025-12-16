@@ -38,15 +38,22 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         phone: waJid,
         link: "https://resipos.vercel.app/resi/P2021304810014",
-        caption: `Terima kasih telah bertransaksi di toko kami, paket Anda telah diproses/dikirim.\nAnda bisa melakukan pengecekan paket anda melalui link berikut:\n`,
+        caption:
+          "Terima kasih telah bertransaksi di toko kami, paket Anda telah diproses/dikirim.\nAnda bisa melakukan pengecekan paket anda melalui link berikut:",
+        reply_message_id: "NJC81230192255",
+        is_forwarded: false,
       }),
     });
 
     if (!res.ok) {
-      console.error("WhatsApp API error:", await res.text());
+      const errorData = await res.json();
+
       return NextResponse.json(
-        { error: "Failed to send WhatsApp message" },
-        { status: 500 }
+        {
+          code: errorData.code ?? "API_ERROR",
+          message: errorData.message ?? "Unknown error",
+        },
+        { status: res.status }
       );
     }
 
