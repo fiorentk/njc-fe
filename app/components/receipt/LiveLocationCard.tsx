@@ -1,5 +1,5 @@
 import { MapPin } from "lucide-react";
-import { ResiData } from "@/app/resi/[resi]/dummy-data";
+import { ResiData } from "@/app/resi/[resi]/types";
 
 export interface LiveLocationCardProps {
   data: ResiData["data"];

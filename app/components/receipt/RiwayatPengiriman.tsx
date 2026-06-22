@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { ResiData } from '@/app/resi/[resi]/dummy-data';
+import { ResiData } from '@/app/resi/[resi]/types';
 
 export interface RiwayatPengirimanProps {
   data: ResiData['data'];
