@@ -1,6 +1,6 @@
 import { MapPin, Check, Truck, Package, Radio } from "lucide-react";
 import CopyButton from "@/app/components/CopyButton";
-import type { ResiData } from "@/app/resi/[resi]/dummy-data";
+import type { ResiData } from "@/app/resi/[resi]/types";
 
 export interface StatusOverviewProps {
   data: ResiData["data"];
@@ -142,19 +142,9 @@ function ProgressStepperMobile({ activeIndex }: { activeIndex: number }) {
   );
 }
 
-function getCityLabel(address: string, fallback: string) {
-  const segments = address
-    .split(",")
-    .map((segment) => segment.trim())
-    .filter(Boolean);
-  const candidate = segments[segments.length - 2] ?? segments[segments.length - 1];
-
-  return candidate?.replace(/\b\d{5}\b/g, "").trim() || fallback;
-}
-
 function MapBanner({ data }: { data: ResiData["data"] }) {
-  const originCity = getCityLabel(data.origin_address, "Jakarta");
-  const destinationCity = getCityLabel(data.destination_address, "Bandung");
+  const originCity = data.origin_office;
+  const destinationCity = data.destination_office;
 
   return (
     <div className="relative bg-posDarkBlue rounded-xl overflow-hidden mt-6 h-[220px] md:h-[320px]">
@@ -204,14 +194,14 @@ function MapBanner({ data }: { data: ResiData["data"] }) {
 
       <div className="absolute bottom-1 md:bottom-2 left-[22%] md:left-[18%] -translate-x-1/2 max-w-[35%] md:max-w-none">
         <div className="flex items-center gap-1 md:gap-2 bg-[#6D7F9E]/80 backdrop-blur-sm px-2.5 py-1.5 md:px-5 md:py-2.5 rounded-lg md:rounded-xl border border-white/20 shadow-lg overflow-hidden whitespace-nowrap">
-          <span className="text-white font-bold text-xs md:text-lg truncate">Kota {originCity}</span>
+          <span className="text-white font-bold text-xs md:text-lg truncate">{originCity}</span>
         </div>
         <MapPin className="w-4 h-4 md:w-8 md:h-8 text-posOrange mt-1 md:mt-3 mx-auto shrink-0" fill="currentColor" />
       </div>
 
       <div className="absolute bottom-1 md:bottom-2 right-[22%] md:right-[18%] translate-x-1/2 max-w-[35%] md:max-w-none">
         <div className="flex items-center gap-1 md:gap-2 bg-[#6D7F9E]/80 backdrop-blur-sm px-2.5 py-1.5 md:px-5 md:py-2.5 rounded-lg md:rounded-xl border border-white/20 shadow-lg overflow-hidden whitespace-nowrap">
-          <span className="text-white font-bold text-xs md:text-lg truncate">Kota {destinationCity}</span>
+          <span className="text-white font-bold text-xs md:text-lg truncate">{destinationCity}</span>
         </div>
         <MapPin className="w-4 h-4 md:w-8 md:h-8 text-posOrange mt-1 md:mt-3 mx-auto shrink-0" fill="currentColor" />
       </div>
