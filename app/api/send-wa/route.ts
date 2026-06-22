@@ -11,10 +11,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Get env vars (safe on server)
-    const endpoint = process.env.WA_ENDPOINT;
-    const username = process.env.USERNAME_API;
-    const password = process.env.PASSWORD_API;
+    const endpoint = process.env["WA_ENDPOINT"];
+    const username = process.env["USERNAME_API"];
+    const password = process.env["PASSWORD_API"];
 
     if (!endpoint || !username || !password) {
       console.error("Missing server environment variables");
@@ -40,7 +39,7 @@ export async function POST(req: NextRequest) {
         link: "https://resipos.vercel.app/resi/P2021304810014",
         caption:
           "Terima kasih telah bertransaksi di toko kami, paket Anda telah diproses/dikirim.\nAnda bisa melakukan pengecekan paket anda melalui link berikut:",
-        reply_message_id: "NJC81230192255",
+        reply_message_id: replyId,
         is_forwarded: false,
       }),
     });
