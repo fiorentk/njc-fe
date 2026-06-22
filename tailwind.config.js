@@ -10,6 +10,10 @@ module.exports = {
         posDarkBlue: "#0B2142",
         posOrange: "#F46752",
         gradientCus: "#954D56",
+        "gradient-purple": "#5B2D8C",
+        "gradient-blue": "#2D6BC4",
+        "success-green": "#16A34A",
+        "process-orange": "#F59E0B",
       },
 
       keyframes: {

@@ -4,6 +4,6 @@
 
 @layer base {
   img {
-    @apply inline-block  !important;
+    @apply !inline-block;
   }
 }
