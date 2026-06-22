@@ -73,7 +73,7 @@ export default function UploadPage() {
             <li>Isi Produk/Layanan</li>
             <li>Isi semua data pada excel yang tersedia</li>
             <li>
-              Pindahkan kolom "Status COD":
+              Pindahkan kolom &quot;Status COD&quot;:
               <ul className="list-disc list-inside ml-4 mt-1 space-y-1">
                 <li>
                   a. COD : Ongkos kirim dan bea admin dibayar penjual (Bea Admin
