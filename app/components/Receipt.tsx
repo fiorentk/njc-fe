@@ -1,4 +1,4 @@
-import type { ResiData } from "@/app/resi/[resi]/dummy-data";
+import type { ResiData } from "@/app/resi/[resi]/types";
 import TopBanner from "./receipt/TopBanner";
 import StatusOverview from "./receipt/StatusOverview";
 import DetailKirmanDetails from "./receipt/DetailKirmanDetails";
