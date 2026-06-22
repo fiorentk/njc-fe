@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Copy } from "lucide-react";
 import { usePathname } from "next/navigation";
 
@@ -9,18 +9,14 @@ interface CopyButtonProps {
 
 function CopyButton({ variant = "icon" }: CopyButtonProps) {
   const pathname = usePathname();
-  const [link, setLink] = useState("");
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setLink(`${window.location.origin}${pathname}`);
-    }
-  }, [pathname]);
-
   const [showCopied, setShowCopied] = useState(false);
 
   const copyReceipt = async () => {
+    if (typeof window === "undefined") return;
+
+    const link = `${window.location.origin}${pathname}`;
     if (!link) return;
+
     await navigator.clipboard.writeText(link);
     setShowCopied(true);
     setTimeout(() => setShowCopied(false), 1200);
@@ -44,11 +40,11 @@ function CopyButton({ variant = "icon" }: CopyButtonProps) {
       ) : (
         <button
           onClick={copyReceipt}
-          className="px-2 py-2 bg-white text-posOrange font-semibold border border-posOrange rounded-lg flex items-center gap-2 text-sm
-               transition duration-200 hover:bg-posOrange hover:text-white hover:border-posOrange hover:shadow-md"
+          className="w-full px-4 py-4 bg-white text-posBlue font-semibold border border-gray-200 rounded-xl flex items-center justify-center gap-4 text-base shadow-sm
+               transition duration-200 hover:shadow-md hover:border-gray-300"
         >
-          <Copy size={18} />
-          Salin Resi
+          <Copy size={24} className="text-posOrange shrink-0" />
+          Salin
         </button>
       )}
     </div>

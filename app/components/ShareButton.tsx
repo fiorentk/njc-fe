@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { Share2 } from "lucide-react";
-const html2canvas = (await import("html2canvas")).default;
 
 interface ShareButtonProps {
   variant?: "icon" | "full";
@@ -16,13 +15,16 @@ function ShareButton({ variant = "icon", resi }: ShareButtonProps) {
   };
 
   const shareReceipt = async () => {
-    const el = document.getElementById("receipt");
+    const el = document.getElementById("receipt-export");
     if (!el) return throwErrorShare();
 
+    const html2canvas = (await import("html2canvas")).default;
     const canvas = await html2canvas(el, {
       scale: 2,
       useCORS: true,
       allowTaint: false,
+      ignoreElements: (node) =>
+        node instanceof HTMLElement && node.dataset["skipExport"] === "true",
     });
 
     const img = canvas.toDataURL("image/png");
@@ -47,7 +49,7 @@ function ShareButton({ variant = "icon", resi }: ShareButtonProps) {
           text: "Here’s my digital receipt from Nusantara Journey Card 🌏",
           files: [file],
         });
-      } catch (err) {
+      } catch {
         throwErrorShare();
         forceDownload();
       }
@@ -81,11 +83,11 @@ function ShareButton({ variant = "icon", resi }: ShareButtonProps) {
       ) : (
         <button
           onClick={shareReceipt}
-          className="px-2 py-2 bg-white text-posOrange font-semibold border border-posOrange rounded-lg flex items-center gap-2 text-sm
-               transition duration-200 hover:bg-posOrange hover:text-white hover:shadow-md"
+          className="w-full px-4 py-4 bg-white text-posBlue font-semibold border border-gray-200 rounded-xl flex items-center justify-center gap-4 text-base shadow-sm
+               transition duration-200 hover:shadow-md hover:border-gray-300"
         >
-          <Share2 size={18} />
-          Bagikan Resi
+          <Share2 size={24} className="text-posOrange shrink-0" />
+          Bagikan
         </button>
       )}
     </div>

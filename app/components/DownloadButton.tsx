@@ -1,14 +1,12 @@
 "use client";
 import { useState } from "react";
 import { Download } from "lucide-react";
-const html2canvas = (await import("html2canvas")).default;
 
 interface DownloadButtonProps {
-  variant?: "icon" | "full";
   resi: string;
 }
 
-function DownloadButton({ variant = "icon", resi }: DownloadButtonProps) {
+function DownloadButton({ resi }: DownloadButtonProps) {
   const [showErrorDownload, setShowErrorDownload] = useState(false);
   const throwErrorDownload = () => {
     setShowErrorDownload(true);
@@ -16,13 +14,16 @@ function DownloadButton({ variant = "icon", resi }: DownloadButtonProps) {
   };
 
   const downloadReceipt = async () => {
-    const el = document.getElementById("receipt");
+    const el = document.getElementById("receipt-export");
     if (!el) return throwErrorDownload();
 
+    const html2canvas = (await import("html2canvas")).default;
     const canvas = await html2canvas(el, {
       scale: 2,
       useCORS: true,
       allowTaint: false,
+      ignoreElements: (node) =>
+        node instanceof HTMLElement && node.dataset["skipExport"] === "true",
     });
     const img = canvas.toDataURL("image/png");
 
@@ -45,11 +46,11 @@ function DownloadButton({ variant = "icon", resi }: DownloadButtonProps) {
       )}
       <button
         onClick={downloadReceipt}
-        className="px-2 py-2 bg-white text-posOrange font-semibold border border-posOrange rounded-lg flex items-center gap-2 text-sm
-             transition duration-200 hover:bg-posOrange hover:text-white hover:border-posOrange hover:shadow-md "
+        className="w-full px-4 py-4 bg-white text-posBlue font-semibold border border-gray-200 rounded-xl flex items-center justify-center gap-4 text-base shadow-sm
+             transition duration-200 hover:shadow-md hover:border-gray-300"
       >
-        <Download size={16} />
-        Unduh Resi
+        <Download size={24} className="text-posOrange shrink-0" />
+        Unduh
       </button>
     </div>
   );
