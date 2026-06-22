@@ -30,12 +30,15 @@ const SAMPLE_ARTICLES = [
 
 function Receipt({ data }: ReceiptProps) {
   const d = data.data;
-  const sellerName = d.is_umkm ? d.umkm_name : "PT POS INDONESIA";
+  const fallbackLogoUrl =
+    "https://res.cloudinary.com/dmnyj3znw/image/upload/v1765029163/logopos_wdmmpu.png";
+  const sellerName = d.is_umkm ? d.umkm_name : "POS INDONESIA";
+  const logoUrl = d.is_umkm && d.umkm_logo ? d.umkm_logo : fallbackLogoUrl;
 
   return (
     <div className="flex flex-col gap-5">
       <div id="receipt-export" className="flex flex-col gap-5">
-        <TopBanner sellerName={sellerName} logoUrl={d.umkm_logo} />
+        <TopBanner sellerName={sellerName} logoUrl={logoUrl} />
         <StatusOverview data={d} />
 
         <div className="grid grid-cols-1 lg:grid-cols-[38%_1fr] gap-5">
