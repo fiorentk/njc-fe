@@ -80,7 +80,7 @@ If `API_KEY` is unset, `/resi/[resi]` falls back to dummy data — so local deve
 npm run dev
 ```
 
-Default port: `3000`. On the staging VPS this app is served on port **`14022`** (proxied by Traefik as `staging.mahara.web.id`).
+Default port: `3000`.
 
 ### Production build
 
@@ -108,10 +108,6 @@ npm run lint      # ESLint (strict rules, 0 errors expected)
 npx tsc --noEmit  # TypeScript strict check
 ```
 
-## Deployment (staging)
-
-- Frontend: `staging.mahara.web.id` → Traefik → port **`14022`**
-- Backend (if any): `api-staging.mahara.web.id` → Traefik → port **`14045`**
 
 Keep both `API_KEY` (and any future backend secrets) out of source — set them in the VPS environment before starting the server.
 
