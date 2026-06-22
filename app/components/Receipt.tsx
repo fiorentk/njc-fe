@@ -35,7 +35,7 @@ function Receipt({ data }: ReceiptProps) {
   return (
     <div className="flex flex-col gap-5">
       <div id="receipt-export" className="flex flex-col gap-5">
-        <TopBanner sellerName={sellerName} />
+        <TopBanner sellerName={sellerName} logoUrl={d.umkm_logo} />
         <StatusOverview data={d} />
 
         <div className="grid grid-cols-1 lg:grid-cols-[38%_1fr] gap-5">
