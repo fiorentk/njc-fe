@@ -1,0 +1,150 @@
+[
+    {
+      "code": "010",
+      "service_name": "Surat RLN"
+    },
+    {
+      "code": "311",
+      "service_name": "EMS Dokumen"
+    },
+    {
+      "code": "312",
+      "service_name": "EMS Non Dokumen"
+    },
+    {
+      "code": "331",
+      "service_name": "Paket Cepat Intenasional"
+    },
+    {
+      "code": "332",
+      "service_name": "Paket Biasa Internasional"
+    },
+    {
+      "code": "3LP",
+      "service_name": "Layanan e-Packet LP (APP) Surat"
+    },
+    {
+      "code": "3LX",
+      "service_name": "Layanan e-Packet LP (PRIME) Surat"
+    },
+    {
+      "code": "3PE",
+      "service_name": "Pos Ekspor"
+    },
+    {
+      "code": "BKS",
+      "service_name": "Surat Biasa Internasional"
+    },
+    {
+      "code": "DG",
+      "service_name": "Dangerous Goods"
+    },
+    {
+      "code": "EC3",
+      "service_name": "Paketpos Marketplace"
+    },
+    {
+      "code": "INTR",
+      "service_name": "Pos Reguler"
+    },
+    {
+      "code": "KBM",
+      "service_name": "Kargo Barang Mandiri"
+    },
+    {
+      "code": "KRT",
+      "service_name": "Pos Kargo Reg 2 Jkt"
+    },
+    {
+      "code": "PE",
+      "service_name": "Pos Nextday"
+    },
+    {
+      "code": "PER",
+      "service_name": "paket express ramdhan"
+    },
+    {
+      "code": "PER2",
+      "service_name": "paket express ramdhan"
+    },
+    {
+      "code": "PJB",
+      "service_name": "Pos Jumbo Barang"
+    },
+    {
+      "code": "PJB (892619)",
+      "service_name": "Pos Jumbo"
+    },
+    {
+      "code": "PJE",
+      "service_name": "Pos Jumbo Ekonomi"
+    },
+    {
+      "code": "PJM",
+      "service_name": "Pos Jumbo Motor"
+    },
+    {
+      "code": "PKH",
+      "service_name": "Paket Pos Reguler"
+    },
+    {
+      "code": "PKH (868523)",
+      "service_name": "Paket Pos Reguler"
+    },
+    {
+      "code": "PKH (892619)",
+      "service_name": "Pos Reguler"
+    },
+    {
+      "code": "PKH (899344)",
+      "service_name": "Paket Pos Reguler"
+    },
+    {
+      "code": "PKH (899442)",
+      "service_name": "Paket Pos Reguler"
+    },
+    {
+      "code": "PPB_KARTUPOS",
+      "service_name": "Surat Pos Ekonomi"
+    },
+    {
+      "code": "PPB_PKT",
+      "service_name": "Paket Pos Ekonomi"
+    },
+    {
+      "code": "PPB_SRT",
+      "service_name": "Surat Pos Ekonomi"
+    },
+    {
+      "code": "Pos Nextday",
+      "service_name": "Pos Nextday"
+    },
+    {
+      "code": "Pos Reguler",
+      "service_name": "Pos Reguler"
+    },
+    {
+      "code": "Pos Sameday",
+      "service_name": "Pos Sameday"
+    },
+    {
+      "code": "Q9",
+      "service_name": "Pos Sameday"
+    },
+    {
+      "code": "Q9Plus",
+      "service_name": "Pos Sameday"
+    },
+    {
+      "code": "SKH (886803)",
+      "service_name": "Paket Pos Reguler"
+    },
+    {
+      "code": "SKH (899640)",
+      "service_name": "Paket Pos Reguler"
+    },
+    {
+      "code": "VG",
+      "service_name": "Valuable Goods"
+    }
+  ]

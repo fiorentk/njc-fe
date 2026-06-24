@@ -3,9 +3,10 @@ import ArticleCard from './ArticleCard';
 export interface ArticleGridProps {
   articles: Array<{
     title: string;
-    description: string;
-    imageUrl: string;
-    link: string;
+    slug: string;
+    cover_image_url: string;
+    url: string;
+    content: string;
   }>;
 }
 
@@ -16,13 +17,14 @@ export default function ArticleGrid({ articles }: ArticleGridProps) {
         Anda mungkin tertarik
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {articles.map((article, index) => (
+        {articles.map((article) => (
           <ArticleCard
-            key={index}
+            key={article.slug || article.title}
             title={article.title}
-            description={article.description}
-            imageUrl={article.imageUrl}
-            link={article.link}
+            slug={article.slug}
+            cover_image_url={article.cover_image_url}
+            url={article.url}
+            content={article.content}
           />
         ))}
       </div>

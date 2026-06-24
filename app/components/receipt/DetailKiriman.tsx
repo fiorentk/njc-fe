@@ -1,5 +1,5 @@
 import { Info } from "lucide-react";
-import { ResiData } from "@/app/resi/[resi]/dummy-data";
+import { ResiData } from "@/app/resi/[resi]/types";
 import CopyButton from "@/app/components/CopyButton";
 import ShareButton from "@/app/components/ShareButton";
 import DownloadButton from "@/app/components/DownloadButton";

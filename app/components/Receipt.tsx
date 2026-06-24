@@ -1,4 +1,4 @@
-import type { ResiData } from "@/app/resi/[resi]/types";
+import type { ResiData, ArticleData } from "@/app/resi/[resi]/types";
 import TopBanner from "./receipt/TopBanner";
 import StatusOverview from "./receipt/StatusOverview";
 import DetailKirmanDetails from "./receipt/DetailKirmanDetails";
@@ -9,31 +9,39 @@ import ArticleCard from "./receipt/ArticleCard";
 
 export interface ReceiptProps {
   data: ResiData;
+  articles?: ArticleData[];
 }
 
-const SAMPLE_ARTICLES = [
+const DEFAULT_ARTICLES: ArticleData[] = [
   {
-    title: "Reverse Logistics Skincare Kini Bisa Lewat POSAJA!",
-    description:
-      "Reverse logistics skincare jadi solusi penting di era belanja online. Dengan POSAJA, proses retur jadi lebih praktis, cepat, dan efisien untuk penjual maupun pembeli...",
-    imageUrl: "/ads-1.png",
-    link: "/article",
+    title: "News From POS",
+    slug: "news-pos",
+    cover_image_url:
+      "https://www.posindonesia.co.id/_next/image?url=https%3A%2F%2Fadmin-piol.posindonesia.co.id%2Fmedia%2FHalopos.jpeg&w=1920&q=80",
+    url: "https://www.posindonesia.co.id/en/articles/1",
+    content:
+      "Read the latest news and articles from POS INDONESIA to get information about programs, promotions, and other POS INDONESIA services.",
   },
   {
-    title: "Tips Mengirim Paket Aman Saat Musim Hujan",
-    description:
-      "Musim hujan bukan halangan untuk tetap mengirim paket. Simak tips praktis agar kiriman Anda tetap aman dan sampai tujuan dengan selamat...",
-    imageUrl: "/ads-2.png",
-    link: "/article-2",
+    title: "Gallery POS",
+    slug: "gallery-pos",
+    cover_image_url:
+      "https://www.posindonesia.co.id/_next/image?url=https%3A%2F%2Fadmin-piol.posindonesia.co.id%2Fmedia%2Fcf79d89df20596dec685f3310b1e2806.jpg&w=1920&q=75",
+    url: "https://www.posindonesia.co.id/en/galery?page=1",
+    content:
+      "View the latest media publications from POS INDONESIA to get information about programs, promotions, and other POS INDONESIA services.",
   },
 ];
 
-function Receipt({ data }: ReceiptProps) {
+function Receipt({ data, articles }: ReceiptProps) {
   const d = data.data;
   const fallbackLogoUrl =
     "https://res.cloudinary.com/dmnyj3znw/image/upload/v1765029163/logopos_wdmmpu.png";
-  const sellerName = d.is_umkm ? d.umkm_name : "POS INDONESIA";
-  const logoUrl = d.is_umkm && d.umkm_logo ? d.umkm_logo : fallbackLogoUrl;
+  const sellerName = "POS INDONESIA";
+  const logoUrl = fallbackLogoUrl;
+
+  const displayArticles =
+    articles && articles.length > 0 ? articles : DEFAULT_ARTICLES;
 
   return (
     <div className="flex flex-col gap-5">
@@ -57,8 +65,8 @@ function Receipt({ data }: ReceiptProps) {
           Anda mungkin tertarik
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {SAMPLE_ARTICLES.map((article) => (
-            <ArticleCard key={article.link} {...article} />
+          {displayArticles.map((article) => (
+            <ArticleCard key={article.slug || article.title} {...article} />
           ))}
         </div>
       </div>

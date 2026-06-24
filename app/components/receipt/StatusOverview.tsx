@@ -169,11 +169,11 @@ function MapBanner({ data }: { data: ResiData["data"] }) {
       </div>
 
       <div className="absolute top-4 right-4 md:top-6 md:right-6">
-        <img
-          src="/stamp.png"
-          alt="Stamp"
-          className="w-16 h-12 md:w-[7.5rem] md:h-20 object-contain"
-        />
+          <img
+            src={data.connote_stamp || "/posind-logo.png"}
+            alt="Stamp"
+            className="w-16 h-12 md:w-[7.5rem] md:h-20 object-contain"
+          />
       </div>
 
       <div className="absolute bottom-[-64%] md:bottom-[-120%] left-1/2 -translate-x-1/2">
@@ -184,10 +184,10 @@ function MapBanner({ data }: { data: ResiData["data"] }) {
         />
       </div>
 
-      <div className="absolute bottom-[25%] md:bottom-[31%] left-1/2 -translate-x-1/2">
+      <div className="absolute bottom-[22%] md:bottom-[25%] left-1/2 -translate-x-1/2">
         <img
-          src="/truck.png"
-          alt="Truck"
+          src="/delivery_pos.png"
+          alt="posind"
           className="w-[85px] h-[85px] md:w-[180px] md:h-[180px] object-contain animate-slideFadeLoop"
         />
       </div>

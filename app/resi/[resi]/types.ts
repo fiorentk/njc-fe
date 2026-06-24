@@ -16,13 +16,19 @@ export interface ResiData {
     destination_address: string;
     details: string;
     connote_stamp: string;
-    is_umkm: boolean;
-    umkm_name: string;
-    umkm_logo: string;
     current_state: "Pick Up" | "Shipping" | "Delivered";
     current_office: string;
     origin_office: string;
     destination_office: string;
     connote_progress: ResiProgress[];
+    nokprk: string;
   };
+}
+
+export interface ArticleData {
+  title: string;
+  slug: string;
+  cover_image_url: string;
+  url: string;
+  content: string;
 }

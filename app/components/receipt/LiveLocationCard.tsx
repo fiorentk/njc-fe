@@ -25,8 +25,8 @@ export default function LiveLocationCard({ data }: LiveLocationCardProps) {
         />
 
         <img
-          src="/truck.png"
-          alt="Truck"
+          src="/delivery_pos.png"
+          alt="Delivery"
           className="w-12 h-12 md:w-16 md:h-16 object-contain animate-slideFadeLoop"
         />
 
